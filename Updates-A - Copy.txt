@@ -1,0 +1,26 @@
+/**
+*Updates - Almighty
+*/
+
+
+
+/**
+*Updates for Client here
+*/
+
+10/19/2017:
+
+Added Recoloring Method(RDC)
+
+10/20/2017:
+
+Refactored parts of ItemDef
+
+
+
+
+
+/**
+*Updates for Source here
+*/
+

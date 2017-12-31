@@ -1,0 +1,88 @@
+
+Year : 2015	Month : 5	Day : 2
+Gave 1 Karil's skirt To gage
+--------------------------------------------------
+Year : 2015	Month : 5	Day : 2
+Gave 250000000 Coins To gage
+--------------------------------------------------
+Year : 2015	Month : 5	Day : 3
+Gave 1 ice katana To h20
+--------------------------------------------------
+Year : 2015	Month : 5	Day : 3
+Gave 300000000 Coins To party dicer
+--------------------------------------------------
+Year : 2015	Month : 5	Day : 3
+Gave 3 100m check To party dicer
+--------------------------------------------------
+Year : 2015	Month : 5	Day : 3
+Gave 300000000 Coins To party dicer
+--------------------------------------------------
+Year : 2015	Month : 5	Day : 3
+Gave 1 Blazing Sword To party dicer
+--------------------------------------------------
+Year : 2015	Month : 5	Day : 3
+Gave 1 Blazing Sword To party dicer
+--------------------------------------------------
+Year : 2015	Month : 5	Day : 3
+Gave 1 Vesta's longsword To party dicer
+--------------------------------------------------
+Year : 2015	Month : 5	Day : 3
+Gave 1 Zuriel's robe bottom To party dicer
+--------------------------------------------------
+Year : 2015	Month : 5	Day : 3
+Gave 1 Blazing Sword To party dicer
+--------------------------------------------------
+Year : 2015	Month : 5	Day : 3
+Gave 1 Gold dragon scimitar To party dicer
+--------------------------------------------------
+Year : 2015	Month : 5	Day : 3
+Gave 1 Blazing Sword To party dicer
+--------------------------------------------------
+Year : 2015	Month : 5	Day : 3
+Gave 1 Blazing Sword To party dicer
+--------------------------------------------------
+Year : 2015	Month : 5	Day : 3
+Gave 1 Vesta's longsword To party dicer
+--------------------------------------------------
+Year : 2015	Month : 5	Day : 3
+Gave 1 Zuriel's robe bottom To party dicer
+--------------------------------------------------
+Year : 2015	Month : 5	Day : 3
+Gave 1 Scythe To party dicer
+--------------------------------------------------
+Year : 2015	Month : 5	Day : 3
+Gave 1 Virtus platebody To party dicer
+--------------------------------------------------
+Year : 2015	Month : 5	Day : 4
+Gave 1 Scythe To gage
+--------------------------------------------------
+Year : 2015	Month : 5	Day : 5
+Gave 1 Blue Torva Platebody To jay
+--------------------------------------------------
+Year : 2015	Month : 5	Day : 5
+Gave 1 Vestige Partyhat To party dicer
+--------------------------------------------------
+Year : 2015	Month : 5	Day : 5
+Gave 1 Vestige Partyhat To party dicer
+--------------------------------------------------
+Year : 2015	Month : 5	Day : 5
+Gave 200000000 Coins To party dicer
+--------------------------------------------------
+Year : 2015	Month : 5	Day : 5
+Gave 200000000 Coins To party dicer
+--------------------------------------------------
+Year : 2015	Month : 5	Day : 5
+Gave 100000000 Coins To party dicer
+--------------------------------------------------
+Year : 2015	Month : 5	Day : 5
+Gave 1 Ganja cape To party dicer
+--------------------------------------------------
+Year : 2015	Month : 5	Day : 5
+Gave 200000000 Coins To party dicer
+--------------------------------------------------
+Year : 2015	Month : 5	Day : 5
+Gave 4 2B Ticket To party dicer
+--------------------------------------------------
+Year : 2015	Month : 5	Day : 5
+Gave 50000000 Coins To party dicer
+--------------------------------------------------

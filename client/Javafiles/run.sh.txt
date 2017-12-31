@@ -1,0 +1,17 @@
+#!/bin/sh
+alias datetime='date -u +"%d/%m/%y %H:%M"'
+case "$TERM" in
+xterm*|rxvt*)
+    echo -n "\033]0;[`datetime`] RuneSource\007"
+    ;;
+*)
+    ;;
+esac
+
+    java -classpath client
+
+fi
+
+echo -n "Press any key to continue..."
+read tmp >/dev/null
+exit

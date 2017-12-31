@@ -1,0 +1,85 @@
+
+Year : 2016	Month : 3	Day : 27
+Gave 21000 1 bill check To vanz
+--------------------------------------------------
+Year : 2016	Month : 3	Day : 27
+Gave 1 420 Torva platebody To titan
+--------------------------------------------------
+Year : 2016	Month : 3	Day : 27
+Gave 1 Orange Juice Torva Full Helm To titan
+--------------------------------------------------
+Year : 2016	Month : 3	Day : 27
+Gave 1 Candy Torva Gloves To titan
+--------------------------------------------------
+Year : 2016	Month : 3	Day : 27
+Gave 1 Viking Torva Boots To titan
+--------------------------------------------------
+Year : 2016	Month : 3	Day : 27
+Gave 1 Viking Torva Wings To titan
+--------------------------------------------------
+Year : 2016	Month : 3	Day : 27
+Gave 1 Orange Juice Torva Platelegs To titan
+--------------------------------------------------
+Year : 2016	Month : 3	Day : 27
+Gave 1 Viking Torva Whip To titan
+--------------------------------------------------
+Year : 2016	Month : 3	Day : 27
+Gave 1 Yin yang amulet To hasty
+--------------------------------------------------
+Year : 2016	Month : 3	Day : 27
+Gave 30000 1 bill check To vanz
+--------------------------------------------------
+Year : 2016	Month : 3	Day : 28
+Gave 1 Chaotic whip To deaf kev
+--------------------------------------------------
+Year : 2016	Month : 3	Day : 28
+Gave 60000 1 bill check To vanz
+--------------------------------------------------
+Year : 2016	Month : 3	Day : 29
+Gave 1 Dumblas torva gloves To eetuisrich
+--------------------------------------------------
+Year : 2016	Month : 3	Day : 29
+Gave 1 Dumblas torva platebody To eetuisrich
+--------------------------------------------------
+Year : 2016	Month : 3	Day : 29
+Gave 1 Dumblas torva gloves To hasty
+--------------------------------------------------
+Year : 2016	Month : 3	Day : 29
+Gave 1 Yin yang amulet To eetuisrich
+--------------------------------------------------
+Year : 2016	Month : 3	Day : 29
+Gave 1 SSJ5 helm To weazy
+--------------------------------------------------
+Year : 2016	Month : 4	Day : 1
+Gave 1 Sayian body To sekki
+--------------------------------------------------
+Year : 2016	Month : 4	Day : 1
+Gave 1 Sponsor Torva Fullhelm To sekki
+--------------------------------------------------
+Year : 2016	Month : 4	Day : 1
+Gave 1 God Torva legs To sekki
+--------------------------------------------------
+Year : 2016	Month : 4	Day : 1
+Gave 1 White Torva Platebody To sekki
+--------------------------------------------------
+Year : 2016	Month : 4	Day : 1
+Gave 1 Sponsor gloves To sekki
+--------------------------------------------------
+Year : 2016	Month : 4	Day : 1
+Gave 1 Sponsor boots To sekki
+--------------------------------------------------
+Year : 2016	Month : 4	Day : 1
+Gave 1 Ares shield To sekki
+--------------------------------------------------
+Year : 2016	Month : 4	Day : 1
+Gave 1 Dumblas offhand shield To sekki
+--------------------------------------------------
+Year : 2016	Month : 4	Day : 1
+Gave 1 Sajan2 aura shield To sekki
+--------------------------------------------------
+Year : 2016	Month : 4	Day : 1
+Gave 1 Yin yang amulet To sekki
+--------------------------------------------------
+Year : 2016	Month : 4	Day : 1
+Gave 1 Energy sword To sekki
+--------------------------------------------------

@@ -1,0 +1,82 @@
+
+Year : 2016	Month : 3	Day : 28
+Gave 5000 1 bill check To edin
+--------------------------------------------------
+Year : 2016	Month : 3	Day : 28
+Gave 500 2B Ticket To edin
+--------------------------------------------------
+Year : 2016	Month : 3	Day : 28
+Gave 400 2B Ticket To edin
+--------------------------------------------------
+Year : 2016	Month : 3	Day : 28
+Gave 1000 2B Ticket To edin
+--------------------------------------------------
+Year : 2016	Month : 3	Day : 28
+Gave 900 1 bill check To edin
+--------------------------------------------------
+Year : 2016	Month : 3	Day : 28
+Gave 2000 1 bill check To seth
+--------------------------------------------------
+Year : 2016	Month : 3	Day : 28
+Gave 1900 2B Ticket To seth
+--------------------------------------------------
+Year : 2016	Month : 3	Day : 28
+Gave 1 Ares sword To seth
+--------------------------------------------------
+Year : 2016	Month : 3	Day : 28
+Gave 1 Ares shield To seth
+--------------------------------------------------
+Year : 2016	Month : 3	Day : 28
+Gave 1 Dumblas torva platebody To seth
+--------------------------------------------------
+Year : 2016	Month : 3	Day : 28
+Gave 1 Lightslayer Wings To seth
+--------------------------------------------------
+Year : 2016	Month : 4	Day : 1
+Gave 1 Present To everykarma
+--------------------------------------------------
+Year : 2016	Month : 4	Day : 1
+Gave 1 Present To everykarma
+--------------------------------------------------
+Year : 2016	Month : 4	Day : 1
+Gave 1 Present To omeagaftw
+--------------------------------------------------
+Year : 2016	Month : 4	Day : 1
+Gave 1 Present To omeagaftw
+--------------------------------------------------
+Year : 2016	Month : 4	Day : 1
+Gave 1 Present To omeagaftw
+--------------------------------------------------
+Year : 2016	Month : 4	Day : 1
+Gave 1 Present To everykarma
+--------------------------------------------------
+Year : 2016	Month : 4	Day : 1
+Gave 3000 2B Ticket To pata2
+--------------------------------------------------
+Year : 2016	Month : 4	Day : 1
+Gave 6997 2B Ticket To dutchhd
+--------------------------------------------------
+Year : 2016	Month : 4	Day : 1
+Gave 1 Cyan Halo Sword To deadkid
+--------------------------------------------------
+Year : 2016	Month : 4	Day : 1
+Gave 1 Black beret To seth
+--------------------------------------------------
+Year : 2016	Month : 4	Day : 1
+Gave 665 2B Ticket To deadkid
+--------------------------------------------------
+Year : 2016	Month : 4	Day : 1
+Gave 1 Imperial torva fullhelm To deadkid
+--------------------------------------------------
+Year : 2016	Month : 4	Day : 1
+Gave 1 Yin yang amulet To peebo
+--------------------------------------------------
+Year : 2016	Month : 4	Day : 1
+Gave 1 Blood necklace To pvm loots
+--------------------------------------------------
+Year : 2016	Month : 4	Day : 1
+Gave 1 Blood Torva platelegs To pvm loots
+--------------------------------------------------
+Year : 2016	Month : 4	Day : 1
+Gave 1 Boss torva body To pvm loots
+--------------------------------------------------

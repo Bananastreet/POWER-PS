@@ -1,0 +1,26 @@
+/**
+*Updates - Almighty
+*/
+
+//<span style="color:#7b3700;font-weight:bold;text-shadow: 0px 0px 3px #000000;"><blink>ISAIAH</blink></span>
+
+/**
+*Updates for Client here
+*/
+
+10/19/2017:
+
+Added Recoloring Method(RDC)
+
+10/20/2017:
+
+Refactored parts of ItemDef
+
+
+
+
+
+/**
+*Updates for Source here
+*/
+

@@ -1,0 +1,67 @@
+
+Year : 2016	Month : 3	Day : 28
+Gave 1 Candy Torva Whip To ramon ruin
+--------------------------------------------------
+Year : 2016	Month : 3	Day : 28
+Gave 1 Orange Juice Torva Platebody To ramon ruin
+--------------------------------------------------
+Year : 2016	Month : 3	Day : 28
+Gave 1 Orange Juice Torva Full Helm To ramon ruin
+--------------------------------------------------
+Year : 2016	Month : 3	Day : 28
+Gave 160 2B Ticket To azgod
+--------------------------------------------------
+Year : 2016	Month : 3	Day : 28
+Gave 100 1 bill check To azgod
+--------------------------------------------------
+Year : 2016	Month : 3	Day : 28
+Gave 1 Cloud Torva Platelegs To azgod
+--------------------------------------------------
+Year : 2016	Month : 3	Day : 28
+Gave 1 Cloud Torva Wings To azgod
+--------------------------------------------------
+Year : 2016	Month : 3	Day : 28
+Gave 1 Viking Torva Boots To azgod
+--------------------------------------------------
+Year : 2016	Month : 3	Day : 28
+Gave 1 Candy Torva Gloves To azgod
+--------------------------------------------------
+Year : 2016	Month : 3	Day : 28
+Gave 1 Cloud Torva Platebody To azgod
+--------------------------------------------------
+Year : 2016	Month : 3	Day : 28
+Gave 1 Cloud Torva Whip To azgod
+--------------------------------------------------
+Year : 2016	Month : 3	Day : 28
+Gave 1 Candy Torva Platebody To azgod
+--------------------------------------------------
+Year : 2016	Month : 3	Day : 28
+Gave 1 Candy Torva Full Helm To azgod
+--------------------------------------------------
+Year : 2016	Month : 3	Day : 28
+Gave 1 Candy Torva Platelegs To azgod
+--------------------------------------------------
+Year : 2016	Month : 3	Day : 28
+Gave 1 Cryptic Torva Full Helm To azgod
+--------------------------------------------------
+Year : 2016	Month : 3	Day : 28
+Gave 1 Cloud Torva Full Helm To azgod
+--------------------------------------------------
+Year : 2016	Month : 3	Day : 29
+Gave 725 2B Ticket To prestige
+--------------------------------------------------
+Year : 2016	Month : 3	Day : 29
+Gave 1713 1 bill check To azgod
+--------------------------------------------------
+Year : 2016	Month : 4	Day : 2
+Gave 1 Bone sword To skys
+--------------------------------------------------
+Year : 2016	Month : 4	Day : 2
+Gave 1 Sajan4 aura shield To king
+--------------------------------------------------
+Year : 2016	Month : 4	Day : 2
+Gave 1 Sajan3 aura shield To king
+--------------------------------------------------
+Year : 2016	Month : 4	Day : 2
+Gave 1 Sajan2 aura shield To king
+--------------------------------------------------

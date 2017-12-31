@@ -1,0 +1,20 @@
+Updates:
+
+10/12/2017:
+
+Started rewriting the command system so it's more user friendly, and easier to use for me.
+Started fixing some bugs like overflow numbers and what not.
+
+10/13/2017:
+Added the update command that works with timing.
+
+
+10/17/2017:
+Continued refactoring the client more, more than 3 classes completed.
+Worked on some sound system for the client, that works with midi's and mp3's.
+
+10/18/2017:
+Fixed interface scrolling for the client.
+Started working on adding resizable and fullscreen, properly.
+Added client zooming.
+
