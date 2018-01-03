@@ -25,7 +25,7 @@ agilitypoints = 0
 DTPoints = 0
 dungPoints = 2
 votingPoints = 0
-LoyaltyPoints = 5100
+LoyaltyPoints = 9600
 pc-points = 2
 barbPoints = 0
 pummelerPoints = 0
@@ -106,7 +106,7 @@ crystal-bow-shots = 0
 VLS-hits = 0
 skull-timer = 0
 MoneyOrb = 2147483647
-LoyaltyScore = 5809
+LoyaltyScore = 1197
 has-npc = false
 summonId = 0
 tempid = 0
@@ -182,7 +182,7 @@ summoningnpcid = 0
 fightMode = 3
 [ACHIEVEMENT]
 achieved = false	false	false	true	false	false	false	false	false	false	false	false	false	false	false	false	false	true	false	false	true	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	false	
-achievement = 0	0	0	11	1	0	0	56	56	0	0	0	0	0	0	0	0	8	0	0	10	10	0	10	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	
+achievement = 0	0	0	11	1	0	0	101	101	0	0	0	0	0	0	0	0	8	0	0	10	10	0	10	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	
 points = 20
 [EQUIPMENT]
 character-equip = 0	10705	1	
