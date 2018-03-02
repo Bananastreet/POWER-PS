@@ -1,7 +1,3 @@
-/******************\
-* www.vestigex.com *
-*******************/
-
 package server;
 
 import java.util.ArrayList;

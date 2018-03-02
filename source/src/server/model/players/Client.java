@@ -1,63 +1,54 @@
 package server.model.players;
 
-import server.model.players.ConnectedFrom;
-import server.model.players.Player;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.concurrent.Future;
-import java.net.*;
-import java.io.*;
-import java.net.URL;
-import server.model.objects.Object;
-import java.net.MalformedURLException;
-import server.Connection;
-import server.model.players.packets.ClickItem;
-import java.io.InputStreamReader;
-import server.model.players.*;
-import server.model.players.skills.Dungeoneering;
-import java.io.BufferedReader;
 
-import server.model.players.skills.Prayer;
-import java.io.IOException;
-import server.model.minigames.*;
 import org.apache.mina.common.IoSession;
-import server.world.ClanChatHandler;
+
 import server.Config;
 import server.Server;
-import server.model.players.Achievements;
-import server.model.players.AchievementManager;
-import server.model.players.AchievementExtra;
-import java.net.URL;
-import server.model.npcs.*;
-import java.net.MalformedURLException;
-import java.io.InputStreamReader;
-import java.io.BufferedReader;
 import server.model.items.Banking;
-import java.io.IOException;
-import server.model.players.BankPin;
 import server.model.items.ItemAssistant;
+import server.model.minigames.Event;
+import server.model.minigames.EventContainer;
+import server.model.minigames.EventManager;
+import server.model.minigames.Gambling;
+import server.model.minigames.WarriorsGuild;
+import server.model.npcs.NPC;
+import server.model.npcs.NPCHandler;
+import server.model.players.content.LoginMessages;
+import server.model.players.content.RequestHelp;
+import server.model.players.packets.ClickItem;
+import server.model.players.skills.Agility;
+import server.model.players.skills.Crafting;
+import server.model.players.skills.Dungeoneering;
+import server.model.players.skills.Farming;
+import server.model.players.skills.Firemaking;
+import server.model.players.skills.Fishing;
+import server.model.players.skills.FlaxStringer;
+import server.model.players.skills.Fletching;
+import server.model.players.skills.Herblore;
+import server.model.players.skills.Prayer;
+import server.model.players.skills.Prospecting;
+import server.model.players.skills.Slayer;
+import server.model.players.skills.Smithing;
+import server.model.players.skills.SmithingInterface;
+import server.model.players.skills.Summonin;
+import server.model.players.skills.Summoning;
+import server.model.players.skills.Thieving;
 import server.model.shops.ShopAssistant;
 import server.net.HostList;
 import server.net.Packet;
 import server.net.StaticPacketBuilder;
-import server.util.Misc;
-import server.model.players.skills.Summoning;
-import server.util.Stream;
-import server.util.*;
-import server.model.players.skills.*;
-import server.model.players.skills.FlaxStringer;
-import server.model.players.PlayerSave;
-import server.model.players.PlayerHandler;
-import server.model.minigames.WarriorsGuild;
-import server.model.minigames.PestControl;
-import server.model.minigames.Gambling;
-import server.model.minigames.Nomad;
-import server.model.minigames.Elvarg;
-import server.model.players.QuickCurses;
-import server.model.players.QuickPrayer;
-import server.model.players.content.*;
-import server.CycleEventHandler;
 import server.task.Task;
+import server.util.Misc;
+import server.util.Stream;
 
 public class Client extends Player {
 	public Dungeoneering getDungeoneering() {
@@ -2545,7 +2536,7 @@ if (duelStatus >= 1 && duelStatus <= 5) {
 		setSidebarInterface(3, 3213);
 		setSidebarInterface(4, 1644);
 		setSidebarInterface(5, 5608);
-		getPA().totallevelsupdate();
+		getPA().levelTotalUpdate();
 		if (playerMagicBook == 0) {
 			setSidebarInterface(6, 1151); // modern
 		}

@@ -2,7 +2,6 @@ package server.model.items;
 
 import server.Config;
 import server.model.players.Client;
-import server.model.players.PlayerHandler;
 import server.model.players.skills.Summoning;
 
 public class Banking {

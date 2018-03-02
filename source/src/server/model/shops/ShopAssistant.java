@@ -44,10 +44,10 @@ public class ShopAssistant {
 
 	public void updatePlayerShop() {
 		for (int i = 1; i < Config.MAX_PLAYERS; i++) {
-			if (PlayerHandler.players[i] != null) {
-				if (PlayerHandler.players[i].isShopping == true
-						&& PlayerHandler.players[i].myShopId == c.myShopId && i != c.playerId) {
-					PlayerHandler.players[i].updateShop = true;
+			if (PlayerHandler.getPlayers()[i] != null) {
+				if (PlayerHandler.getPlayers()[i].isShopping == true && PlayerHandler.getPlayers()[i].myShopId == c.myShopId
+						&& i != c.playerId) {
+					PlayerHandler.getPlayers()[i].updateShop = true;
 				}
 			}
 		}
@@ -83,8 +83,7 @@ public class ShopAssistant {
 					} else {
 						c.getOutStream().writeByte(ShopHandler.ShopItemsN[ShopID][i]);
 					}
-					if (ShopHandler.ShopItems[ShopID][i] > Config.ITEM_LIMIT
-							|| ShopHandler.ShopItems[ShopID][i] < 0) {
+					if (ShopHandler.ShopItems[ShopID][i] > Config.ITEM_LIMIT || ShopHandler.ShopItems[ShopID][i] < 0) {
 						ShopHandler.ShopItems[ShopID][i] = Config.ITEM_LIMIT;
 					}
 					c.getOutStream().writeWordBigEndianA(ShopHandler.ShopItems[ShopID][i]);
@@ -1190,7 +1189,8 @@ public class ShopAssistant {
 				ShopAdd = " (" + (ShopValue / 1000000) + " million)";
 			}
 			c.getItems();
-			c.sendMessage(ItemAssistant.getItemName(removeId) + ": shop will buy for " + ShopValue + " coins" + ShopAdd);
+			c.sendMessage(
+					ItemAssistant.getItemName(removeId) + ": shop will buy for " + ShopValue + " coins" + ShopAdd);
 		}
 	}
 
@@ -1379,8 +1379,8 @@ public class ShopAssistant {
 				c.sendMessage("You just bought " + bought + " " + ItemAssistant.getItemName(itemID) + " for "
 						+ (bought * price));
 				c.getItems();
-				c.myShopClient.sendMessage(
-						c.playerName + " has bought " + bought + " " + ItemAssistant.getItemName(itemID) + " from you!");
+				c.myShopClient.sendMessage(c.playerName + " has bought " + bought + " "
+						+ ItemAssistant.getItemName(itemID) + " from you!");
 				c.myShopClient
 						.sendMessage("You now have " + c.myShopClient.playerCollect + " coins to collect (::collect)");
 			}
@@ -1431,6 +1431,7 @@ public class ShopAssistant {
 			buyVoid(itemID);
 			return false;
 		}
+		//TODO: Shouldn't need to check if the item ids are the same.
 		if (itemID != itemID) {
 			c.sendMessage("Don't dupe or you will be IP Banned");
 			return false;

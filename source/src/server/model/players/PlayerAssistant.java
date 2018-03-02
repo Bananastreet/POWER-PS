@@ -1,39 +1,28 @@
 package server.model.players;
 
-import server.Config;
-import server.Server;
-import server.model.npcs.*;
-import server.util.Misc;
-import server.world.map.*;
-import server.model.players.*;
-import server.model.minigames.*;
-
+import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.Properties;
 
-import server.model.players.PlayerSave;
-import server.clip.region.Region;
-import server.model.players.packets.PathFinder;
-import server.model.minigames.Event;
-import server.model.minigames.EventManager;
-import server.model.minigames.EventContainer;
-
-import java.io.*;
-
-import server.model.minigames.FightPits;
-import server.model.minigames.Event;
-import server.model.minigames.EventContainer;
-import server.model.minigames.EventManager;
-
-import java.util.GregorianCalendar;
-import java.util.Calendar;
-
-import server.model.minigames.Nomad;
-import server.model.players.Player;
-import server.model.players.skills.Summoning;
-import server.model.players.TradeAndDuel;
+import server.Config;
 import server.Connection;
+import server.Server;
+import server.clip.region.Region;
+import server.model.items.ItemAssistant;
+import server.model.minigames.Event;
+import server.model.minigames.EventContainer;
+import server.model.minigames.EventManager;
+import server.model.npcs.NPC;
+import server.model.npcs.NPCHandler;
+import server.model.players.packets.PathFinder;
+import server.model.players.skills.SkillHandler;
 import server.model.players.skills.Woodcutting;
 import server.task.Task;
+import server.util.Misc;
 
 public class PlayerAssistant {
 
@@ -147,14 +136,9 @@ public class PlayerAssistant {
 	}
 
 	public void birdsNest() {
-		Server.itemHandler.createGroundItem(c, 5070 + Misc.random(4), c.getX(), c.getY(), 1, c.getId());// Makes any
-																										// item with the
-																										// ID of 5070 to
-																										// 5074 appear
-																										// on the
-																										// ground.
-		c.sendMessage("A bird's nest falls out of the tree!");// Sends Message telling you that a birds nest has fallen
-																// out of the tree.
+		// TODO: Check if the ground tile is accessible.
+		Server.itemHandler.createGroundItem(c, 5070 + Misc.random(4), c.getX(), c.getY(), 1, c.getId());
+		c.sendMessage("A bird's nest falls out of the tree!");
 	}
 
 	public void dragonkinFormula(int skillId) {
@@ -210,7 +194,7 @@ public class PlayerAssistant {
 		int slot = 0;
 		for (int j = 0; j < c.bankItems.length; j++) {
 			if (c.bankItems[j] > 0) {
-				if (c.getItems().getItemName(c.bankItems[j] - 1).toLowerCase().contains(str.toLowerCase())) {
+				if (ItemAssistant.getItemName(c.bankItems[j] - 1).toLowerCase().contains(str.toLowerCase())) {
 					c.items[slot] = c.bankItems[j];
 					c.itemsN[slot] = c.bankItemsN[j];
 					slot++;
@@ -237,7 +221,7 @@ public class PlayerAssistant {
 
 	public void destroyInterface(int itemId) {
 		itemId = c.droppedItem;
-		String itemName = c.getItems().getItemName(c.droppedItem);
+		String itemName = ItemAssistant.getItemName(c.droppedItem);
 		String[][] info = { { "Are you sure you want to drop this item?", "14174" }, { "Yes.", "14175" },
 				{ "No.", "14176" }, { "", "14177" }, { "Dropping is Disabled, you will NOT", "14182" },
 				{ "get it back once you click Yes.", "14183" }, { itemName, "14184" } };
@@ -249,7 +233,7 @@ public class PlayerAssistant {
 
 	public void destroyItem(int itemId) {
 		itemId = c.droppedItem;
-		String itemName = c.getItems().getItemName(itemId);
+		String itemName = ItemAssistant.getItemName(itemId);
 		c.getItems().deleteItem(itemId, c.getItems().getItemSlot(itemId),
 				c.playerItemsN[c.getItems().getItemSlot(itemId)]);
 		c.sendMessage("Your " + itemName + " vanishes as you drop it on the ground.");
@@ -802,15 +786,15 @@ public class PlayerAssistant {
 			c.forcedChatUpdateRequired = true;
 			c.updateRequired = true;
 			c.vengOn = false;
-			if ((Server.npcHandler.npcs[c.npcIndex].HP - damage) > 0) {
+			if ((NPCHandler.npcs[c.npcIndex].HP - damage) > 0) {
 				damage = (int) (damage * 0.75);
-				if (damage > Server.npcHandler.npcs[c.npcIndex].HP) {
-					damage = Server.npcHandler.npcs[c.npcIndex].HP;
+				if (damage > NPCHandler.npcs[c.npcIndex].HP) {
+					damage = NPCHandler.npcs[c.npcIndex].HP;
 				}
-				Server.npcHandler.npcs[c.npcIndex].HP -= damage;
-				Server.npcHandler.npcs[c.npcIndex].hitDiff2 = damage;
-				Server.npcHandler.npcs[c.npcIndex].hitUpdateRequired2 = true;
-				Server.npcHandler.npcs[c.npcIndex].updateRequired = true;
+				NPCHandler.npcs[c.npcIndex].HP -= damage;
+				NPCHandler.npcs[c.npcIndex].hitDiff2 = damage;
+				NPCHandler.npcs[c.npcIndex].hitUpdateRequired2 = true;
+				NPCHandler.npcs[c.npcIndex].updateRequired = true;
 			}
 		}
 		c.updateRequired = true;
@@ -935,15 +919,6 @@ public class PlayerAssistant {
 	public void loadAnnouncements() {
 		try {
 			loadIni();
-
-			/*
-			 * if (p.getProperty("announcement1").length() > 0) {
-			 * c.sendMessage(p.getProperty("announcement1")); } if
-			 * (p.getProperty("announcement2").length() > 0) {
-			 * c.sendMessage(p.getProperty("announcement2")); } if
-			 * (p.getProperty("announcement3").length() > 0) {
-			 * c.sendMessage(p.getProperty("announcement3")); }
-			 */
 		} catch (Exception e) {
 		}
 	}
@@ -987,9 +962,10 @@ public class PlayerAssistant {
 		c.autocasting = false;
 		c.setSidebarInterface(0, 328);
 		c.getPA().sendFrame36(108, 0);
-		c.getItems().sendWeapon(c.playerEquipment[c.playerWeapon], c.getItems().getItemName(c.playerEquipment[c.playerWeapon]));
+		c.getItems().sendWeapon(c.playerEquipment[c.playerWeapon],
+				ItemAssistant.getItemName(c.playerEquipment[c.playerWeapon]));
 	}
-	
+
 	public void sendSystemUpdate(int time) {
 		if (c.getOutStream() != null && c != null) {
 			c.getOutStream().createFrame(114);
@@ -999,7 +975,6 @@ public class PlayerAssistant {
 	}
 
 	public void sendFrame126(String s, int id) {
-		// synchronized(c) {
 		if (c.getOutStream() != null && c != null) {
 			c.getOutStream().createFrameVarSizeWord(126);
 			c.getOutStream().writeString(s);
@@ -1008,19 +983,15 @@ public class PlayerAssistant {
 			c.flushOutStream();
 		}
 	}
-	// }
 
 	public void sendLink(String s) {
-		// synchronized(c) {
 		if (c.getOutStream() != null && c != null) {
 			c.getOutStream().createFrameVarSizeWord(187);
 			c.getOutStream().writeString(s);
 		}
 	}
-	// }
 
 	public void setSkillLevel(int skillNum, int currentLevel, int XP) {
-		// synchronized(c) {
 		if (c.getOutStream() != null && c != null) {
 			c.getOutStream().createFrame(134);
 			c.getOutStream().writeByte(skillNum);
@@ -1030,21 +1001,15 @@ public class PlayerAssistant {
 		}
 	}
 
-	// }
-	public void totallevelsupdate() {
-		int totalLevel = (getLevelForXP(c.playerXP[0]) + getLevelForXP(c.playerXP[1]) + getLevelForXP(c.playerXP[2])
-				+ getLevelForXP(c.playerXP[3]) + getLevelForXP(c.playerXP[4]) + getLevelForXP(c.playerXP[5])
-				+ getLevelForXP(c.playerXP[6]) + getLevelForXP(c.playerXP[7]) + getLevelForXP(c.playerXP[8])
-				+ getLevelForXP(c.playerXP[9]) + getLevelForXP(c.playerXP[10]) + getLevelForXP(c.playerXP[11])
-				+ getLevelForXP(c.playerXP[12]) + getLevelForXP(c.playerXP[13]) + getLevelForXP(c.playerXP[14])
-				+ getLevelForXP(c.playerXP[15]) + getLevelForXP(c.playerXP[16]) + getLevelForXP(c.playerXP[17])
-				+ getLevelForXP(c.playerXP[18]) + getLevelForXP(c.playerXP[19]) + getLevelForXP(c.playerXP[20])
-				+ getLevelForXP(c.playerXP[21]) + getLevelForXP(c.playerXP[22]));
+	public void levelTotalUpdate() {
+		int totalLevel = 0;
+		for (int i = 0; i < SkillHandler.TOTAL_SKILLS; i++) {
+			totalLevel += getLevelForXP(c.playerXP[i]);
+		}
 		sendFrame126("Levels: " + totalLevel, 13983);
 	}
 
 	public void sendFrame106(int sideIcon) {
-		// synchronized(c) {
 		if (c.getOutStream() != null && c != null) {
 			c.getOutStream().createFrame(106);
 			c.getOutStream().writeByteC(sideIcon);
@@ -1052,19 +1017,15 @@ public class PlayerAssistant {
 			requestUpdates();
 		}
 	}
-	// }
 
 	public void sendFrame107() {
-		// synchronized(c) {
 		if (c.getOutStream() != null && c != null) {
 			c.getOutStream().createFrame(107);
 			c.flushOutStream();
 		}
 	}
 
-	// }
 	public void sendFrame36(int id, int state) {
-		// synchronized(c) {
 		if (c.getOutStream() != null && c != null) {
 			c.getOutStream().createFrame(36);
 			c.getOutStream().writeWordBigEndian(id);
@@ -1072,20 +1033,15 @@ public class PlayerAssistant {
 			c.flushOutStream();
 		}
 	}
-	// }
 
 	public void sendFrame185(int Frame) {
-		// synchronized(c) {
 		if (c.getOutStream() != null && c != null) {
 			c.getOutStream().createFrame(185);
 			c.getOutStream().writeWordBigEndianA(Frame);
 		}
 	}
 
-	// }
-
 	public void showInterface(int interfaceid) {
-		// synchronized(c) {
 		if (c.getOutStream() != null && c != null) {
 			c.getOutStream().createFrame(97);
 			c.getOutStream().writeWord(interfaceid);
@@ -1093,10 +1049,7 @@ public class PlayerAssistant {
 		}
 	}
 
-	// }
-
 	public void sendFrame248(int MainFrame, int SubFrame) {
-		// synchronized(c) {
 		if (c.getOutStream() != null && c != null) {
 			c.getOutStream().createFrame(248);
 			c.getOutStream().writeWordA(MainFrame);
@@ -1105,10 +1058,7 @@ public class PlayerAssistant {
 		}
 	}
 
-	// }
-
 	public void sendFrame246(int MainFrame, int SubFrame, int SubFrame2) {
-		// synchronized(c) {
 		if (c.getOutStream() != null && c != null) {
 			c.getOutStream().createFrame(246);
 			c.getOutStream().writeWordBigEndian(MainFrame);
@@ -1118,10 +1068,7 @@ public class PlayerAssistant {
 		}
 	}
 
-	// }
-
 	public void sendFrame171(int MainFrame, int SubFrame) {
-		// synchronized(c) {
 		if (c.getOutStream() != null && c != null) {
 			c.getOutStream().createFrame(171);
 			c.getOutStream().writeByte(MainFrame);
@@ -1130,10 +1077,7 @@ public class PlayerAssistant {
 		}
 	}
 
-	// }
-
 	public void sendFrame200(int MainFrame, int SubFrame) {
-		// synchronized(c) {
 		if (c.getOutStream() != null && c != null) {
 			c.getOutStream().createFrame(200);
 			c.getOutStream().writeWord(MainFrame);
@@ -1142,10 +1086,7 @@ public class PlayerAssistant {
 		}
 	}
 
-	// }
-
 	public void sendFrame70(int i, int o, int id) {
-		// synchronized(c) {
 		if (c.getOutStream() != null && c != null) {
 			c.getOutStream().createFrame(70);
 			c.getOutStream().writeWord(i);
@@ -1155,17 +1096,13 @@ public class PlayerAssistant {
 		}
 	}
 
-	// }
-
 	public void sendFrame75(int MainFrame, int SubFrame) {
-		// synchronized(c) {
 		if (c.getOutStream() != null && c != null) {
 			c.getOutStream().createFrame(75);
 			c.getOutStream().writeWordBigEndianA(MainFrame);
 			c.getOutStream().writeWordBigEndianA(SubFrame);
 			c.flushOutStream();
 		}
-		// }
 	}
 
 	public void levelUp99() {
@@ -1177,13 +1114,12 @@ public class PlayerAssistant {
 
 			@Override
 			public void stop() {
-				//Do nothing.
+				// Do nothing.
 			}
 		}, 5000);
 	};
 
 	public void sendFrame164(int Frame) {
-		// synchronized(c) {
 		if (c.getOutStream() != null && c != null) {
 			c.getOutStream().createFrame(164);
 			c.getOutStream().writeWordBigEndian_dup(Frame);
@@ -1191,10 +1127,7 @@ public class PlayerAssistant {
 		}
 	}
 
-	// }
-
 	public void setPrivateMessaging(int i) { // friends and ignore list status
-		// synchronized(c) {
 		if (c.getOutStream() != null && c != null) {
 			c.getOutStream().createFrame(221);
 			c.getOutStream().writeByte(i);
@@ -1202,10 +1135,7 @@ public class PlayerAssistant {
 		}
 	}
 
-	// }
-
 	public void setChatOptions(int publicChat, int privateChat, int tradeBlock) {
-		// synchronized(c) {
 		if (c.getOutStream() != null && c != null) {
 			c.getOutStream().createFrame(206);
 			c.getOutStream().writeByte(publicChat);
@@ -1214,8 +1144,6 @@ public class PlayerAssistant {
 			c.flushOutStream();
 		}
 	}
-
-	// }
 
 	public void sendFrame87(int id, int state) {
 		// synchronized(c) {
@@ -1230,7 +1158,6 @@ public class PlayerAssistant {
 	// }
 
 	public void sendPM(long name, int rights, byte[] chatmessage, int messagesize) {
-		// synchronized(c) {
 		if (c.getOutStream() != null && c != null) {
 			c.getOutStream().createFrameVarSize(196);
 			c.getOutStream().writeQWord(name);
@@ -1244,10 +1171,7 @@ public class PlayerAssistant {
 		}
 	}
 
-	// }
-
 	public void createPlayerHints(int type, int id) {
-		// synchronized(c) {
 		if (c.getOutStream() != null && c != null) {
 			c.getOutStream().createFrame(254);
 			c.getOutStream().writeByte(type);
@@ -1257,10 +1181,7 @@ public class PlayerAssistant {
 		}
 	}
 
-	// }
-
 	public void createObjectHints(int x, int y, int height, int pos) {
-		// synchronized(c) {
 		if (c.getOutStream() != null && c != null) {
 			c.getOutStream().createFrame(254);
 			c.getOutStream().writeByte(pos);
@@ -1271,10 +1192,7 @@ public class PlayerAssistant {
 		}
 	}
 
-	// }
-
 	public void loadPM(long playerName, int world) {
-		// synchronized(c) {
 		if (c.getOutStream() != null && c != null) {
 			if (world != 0) {
 				world += 9;
@@ -1286,14 +1204,8 @@ public class PlayerAssistant {
 			c.getOutStream().writeByte(world);
 			c.flushOutStream();
 		}
-		// }
 	}
-
-	/*
-	 * public void removeAllItems() { for (int i = 0; i < c.playerItems.length; i++)
-	 * { c.playerItems[i] = 0; } for (int i = 0; i < c.playerItemsN.length; i++) {
-	 * c.playerItemsN[i] = 0; } c.getItems().resetItems(3214); }
-	 */
+	
 	public void removeAllItems() {
 		for (int i = 0; i < c.playerItems.length; i++) {
 			c.playerItems[i] = 0;
@@ -1305,7 +1217,6 @@ public class PlayerAssistant {
 
 	public void removeAllWindows() {
 		c.storing = false;
-		// synchronized(c) {
 		if (c.getOutStream() != null && c != null) {
 			c.getPA().resetVariables();
 			c.getOutStream().createFrame(219);
@@ -1313,10 +1224,7 @@ public class PlayerAssistant {
 		}
 	}
 
-	// }
-
 	public void closeAllWindows() {
-		// synchronized(c) {
 		if (c.getOutStream() != null && c != null) {
 			c.getOutStream().createFrame(219);
 			c.flushOutStream();
@@ -1327,11 +1235,9 @@ public class PlayerAssistant {
 			}
 			// c.getTradeAndDuel().declineTrade();
 		}
-		// }
 	}
 
 	public void sendFrame34(int id, int slot, int column, int amount) {
-		// synchronized(c) {
 		if (c.getOutStream() != null && c != null) {
 			c.outStream.createFrameVarSizeWord(34); // init item to smith screen
 			c.outStream.writeWord(column); // Column Across Smith Screen
@@ -1342,8 +1248,6 @@ public class PlayerAssistant {
 			c.outStream.endFrameVarSizeWord();
 		}
 	}
-
-	// }
 
 	public void Frame34(int frame, int item, int slot, int amount) {
 
@@ -1471,7 +1375,7 @@ public class PlayerAssistant {
 	}
 
 	public NPC getNpc(int index) {
-		return (NPC) Server.npcHandler.npcs[index];
+		return (NPC) NPCHandler.npcs[index];
 	}
 
 	public Client getClient(String name) {
@@ -1488,7 +1392,7 @@ public class PlayerAssistant {
 	}
 
 	public Client getClient(int id) {
-		return (Client) Server.playerHandler.players[id];
+		return (Client) PlayerHandler.getPlayers()[id];
 	}
 
 	public boolean validClient(int id) {
@@ -1564,10 +1468,9 @@ public class PlayerAssistant {
 	 **/
 
 	public void frame1() {
-		// synchronized(c) {
 		for (int i = 0; i < Config.MAX_PLAYERS; i++) {
-			if (Server.playerHandler.players[i] != null) {
-				Client person = (Client) Server.playerHandler.players[i];
+			if (PlayerHandler.getPlayers()[i] != null) {
+				Client person = (Client) PlayerHandler.getPlayers()[i];
 				if (person != null) {
 					if (person.getOutStream() != null && !person.disconnected) {
 						if (c.distanceToPoint(person.getX(), person.getY()) <= 25) {
@@ -1581,14 +1484,11 @@ public class PlayerAssistant {
 		}
 	}
 
-	// }
-
 	/**
 	 * Creating projectile
 	 **/
 	public void createProjectile(int x, int y, int offX, int offY, int angle, int speed, int gfxMoving, int startHeight,
 			int endHeight, int lockon, int time) {
-		// synchronized(c) {
 		if (c.getOutStream() != null && c != null) {
 			c.getOutStream().createFrame(85);
 			c.getOutStream().writeByteC((y - (c.getMapRegionY() * 8)) - 2);
@@ -1608,8 +1508,6 @@ public class PlayerAssistant {
 			c.flushOutStream();
 		}
 	}
-
-	// }
 
 	public void createProjectile2(int x, int y, int offX, int offY, int angle, int speed, int gfxMoving,
 			int startHeight, int endHeight, int lockon, int time, int slope) {
@@ -1639,9 +1537,8 @@ public class PlayerAssistant {
 	// projectiles for everyone within 25 squares
 	public void createPlayersProjectile(int x, int y, int offX, int offY, int angle, int speed, int gfxMoving,
 			int startHeight, int endHeight, int lockon, int time) {
-		// synchronized(c) {
 		for (int i = 0; i < Config.MAX_PLAYERS; i++) {
-			Player p = Server.playerHandler.players[i];
+			Player p = PlayerHandler.getPlayers()[i];
 			if (p != null) {
 				Client person = (Client) p;
 				if (person != null) {
@@ -1657,13 +1554,10 @@ public class PlayerAssistant {
 		}
 	}
 
-	// }
-
 	public void createPlayersProjectile2(int x, int y, int offX, int offY, int angle, int speed, int gfxMoving,
 			int startHeight, int endHeight, int lockon, int time, int slope) {
-		// synchronized(c) {
 		for (int i = 0; i < Config.MAX_PLAYERS; i++) {
-			Player p = Server.playerHandler.players[i];
+			Player p = PlayerHandler.getPlayers()[i];
 			if (p != null) {
 				Client person = (Client) p;
 				if (person != null) {
@@ -1678,13 +1572,10 @@ public class PlayerAssistant {
 		}
 	}
 
-	// }
-
 	/**
 	 ** GFX
 	 **/
 	public void stillGfx(int id, int x, int y, int height, int time) {
-		// synchronized(c) {
 		if (c.getOutStream() != null && c != null) {
 			c.getOutStream().createFrame(85);
 			c.getOutStream().writeByteC(y - (c.getMapRegionY() * 8));
@@ -1698,13 +1589,10 @@ public class PlayerAssistant {
 		}
 	}
 
-	// }
-
 	// creates gfx for everyone
 	public void createPlayersStillGfx(int id, int x, int y, int height, int time) {
-		// synchronized(c) {
 		for (int i = 0; i < Config.MAX_PLAYERS; i++) {
-			Player p = Server.playerHandler.players[i];
+			Player p = PlayerHandler.getPlayers()[i];
 			if (p != null) {
 				Client person = (Client) p;
 				if (person != null) {
@@ -1718,13 +1606,10 @@ public class PlayerAssistant {
 		}
 	}
 
-	// }
-
 	/**
 	 * Objects, add and remove
 	 **/
 	public void object(int objectId, int objectX, int objectY, int face, int objectType) {
-		// synchronized(c) {
 		if (c.getOutStream() != null && c != null) {
 			c.getOutStream().createFrame(85);
 			c.getOutStream().writeByteC(objectY - (c.getMapRegionY() * 8));
@@ -1742,13 +1627,10 @@ public class PlayerAssistant {
 			c.flushOutStream();
 		}
 	}
-
-	// }
 
 	public void checkObjectSpawn(int objectId, int objectX, int objectY, int face, int objectType) {
 		if (c.distanceToPoint(objectX, objectY) > 60)
 			return;
-		// synchronized(c) {
 		if (c.getOutStream() != null && c != null) {
 			c.getOutStream().createFrame(85);
 			c.getOutStream().writeByteC(objectY - (c.getMapRegionY() * 8));
@@ -1766,8 +1648,6 @@ public class PlayerAssistant {
 			c.flushOutStream();
 		}
 	}
-
-	// }
 
 	/**
 	 * Show option, attack, trade, follow etc
@@ -1775,7 +1655,6 @@ public class PlayerAssistant {
 	public String optionType = "null";
 
 	public void showOption(int i, int l, String s, int a) {
-		// synchronized(c) {
 		if (c.getOutStream() != null && c != null) {
 			if (!optionType.equalsIgnoreCase(s)) {
 				optionType = s;
@@ -1789,18 +1668,15 @@ public class PlayerAssistant {
 		}
 	}
 
-	// }
-
 	/**
 	 * Open bank
 	 **/
 	public void openUpBank() {
-		// synchronized(c) {
 		if (!c.InDung() && !c.inDungBossRoom()) {
 			for (int i : Config.DUNG_ARM) {
-				for (int j = 0; j < Server.playerHandler.players.length; j++) {
-					if (Server.playerHandler.players[j] != null) {
-						Client c2 = (Client) Server.playerHandler.players[j];
+				for (int j = 0; j < PlayerHandler.getPlayers().length; j++) {
+					if (PlayerHandler.getPlayers()[j] != null) {
+						Client c2 = (Client) PlayerHandler.getPlayers()[j];
 						if (c.getItems().playerHasItem(i, 1)) {
 							c2.sendMessage("<shad=132833>" + c.playerName + " Has Dung items out of Dung! JAILED!");
 							c.sendMessage("Hand The Items To a Staff Member or WHOLE ACCOUNT RESET.");
@@ -1846,7 +1722,6 @@ public class PlayerAssistant {
 			c.flushOutStream();
 		}
 	}
-	// }
 
 	/**
 	 * Private Messaging
@@ -1854,7 +1729,7 @@ public class PlayerAssistant {
 	public void logIntoPM() {
 		setPrivateMessaging(2);
 		for (int i1 = 0; i1 < Config.MAX_PLAYERS; i1++) {
-			Player p = Server.playerHandler.players[i1];
+			Player p = PlayerHandler.getPlayers()[i1];
 			if (p != null && p.isActive) {
 				Client o = (Client) p;
 				if (o != null) {
@@ -1867,7 +1742,7 @@ public class PlayerAssistant {
 		for (int i = 0; i < c.friends.length; i++) {
 			if (c.friends[i] != 0) {
 				for (int i2 = 1; i2 < Config.MAX_PLAYERS; i2++) {
-					Player p = Server.playerHandler.players[i2];
+					Player p = PlayerHandler.getPlayers()[i2];
 					if (p != null && p.isActive && Misc.playerNameToInt64(p.playerName) == c.friends[i]) {
 						Client o = (Client) p;
 						if (o != null) {
@@ -1886,7 +1761,7 @@ public class PlayerAssistant {
 				pmLoaded = false;
 			}
 			for (int i1 = 1; i1 < Config.MAX_PLAYERS; i1++) {
-				Player p = Server.playerHandler.players[i1];
+				Player p = PlayerHandler.getPlayers()[i1];
 				if (p != null && p.isActive) {
 					Client o = (Client) p;
 					if (o != null) {
@@ -1987,7 +1862,7 @@ public class PlayerAssistant {
 			return;
 		}
 		Client o = (Client) p;
-		long l = Misc.playerNameToInt64(Server.playerHandler.getPlayers()[pID].playerName);
+		long l = Misc.playerNameToInt64(PlayerHandler.getPlayers()[pID].playerName);
 
 		if (p.privateChat == 0) {
 			for (int i = 0; i < c.friends.length; i++) {
@@ -2049,14 +1924,14 @@ public class PlayerAssistant {
 	 */
 	public void potionPoisonHeal(int itemId, int itemSlot, int newItemId, int healType) {
 		c.attackTimer = c.getCombat()
-				.getAttackDelay(c.getItems().getItemName(c.playerEquipment[c.playerWeapon]).toLowerCase());
+				.getAttackDelay(ItemAssistant.getItemName(c.playerEquipment[c.playerWeapon]).toLowerCase());
 		if (c.duelRule[5]) {
 			c.sendMessage("Potions has been disabled in this duel!");
 			return;
 		}
 		if (!c.isDead && System.currentTimeMillis() - c.foodDelay > 2000) {
 			if (c.getItems().playerHasItem(itemId, 1, itemSlot)) {
-				c.sendMessage("You drink the " + c.getItems().getItemName(itemId).toLowerCase() + ".");
+				c.sendMessage("You drink the " + ItemAssistant.getItemName(itemId).toLowerCase() + ".");
 				c.foodDelay = System.currentTimeMillis();
 				// Actions
 				if (healType == 1) {
@@ -2380,7 +2255,7 @@ public class PlayerAssistant {
 		int weapon = c.playerEquipment[c.playerWeapon];
 		c.respawnTimer = 15;
 		c.isDead = false;
-		Client o = (Client) Server.playerHandler.players[c.killerId];
+		Client o = (Client) PlayerHandler.getPlayers()[c.killerId];
 		try {
 			o.Killed++;
 		} catch (Exception e) {
@@ -2394,7 +2269,7 @@ public class PlayerAssistant {
 				if (o.duelStatus == 5) {
 					o.duelStatus++;
 				}
-				if (Server.playerHandler.players[c.killerId].connectedFrom == Server.playerHandler.players[c.playerKilled].connectedFrom) {
+				if (PlayerHandler.getPlayers()[c.killerId].connectedFrom == PlayerHandler.getPlayers()[c.playerKilled].connectedFrom) {
 					c.faceUpdate(0);
 					closeAllWindows();
 					c.npcIndex = 0;
@@ -2419,8 +2294,7 @@ public class PlayerAssistant {
 					c.tradeResetNeeded = true;
 					return;
 				}
-				if (Server.playerHandler.players[c.killerId].connectedFrom
-						.equals(Server.playerHandler.players[c.playerKilled].connectedFrom)) {
+				if (PlayerHandler.getPlayers()[c.killerId].connectedFrom.equals(PlayerHandler.getPlayers()[c.playerKilled].connectedFrom)) {
 					o.sendMessage("Multiple IP detected, No reward..");
 					c.faceUpdate(0);
 					c.npcIndex = 0;
@@ -2447,7 +2321,7 @@ public class PlayerAssistant {
 					c.tradeResetNeeded = true;
 					return;
 				}
-				if (Server.playerHandler.players[c.playerId].connectedFrom != o.lastKilled && c.duelStatus == 0) {
+				if (PlayerHandler.getPlayers()[c.playerId].connectedFrom != o.lastKilled && c.duelStatus == 0) {
 					o.pkPoints = (o.pcPoints + 2);
 					o.PkminiPoints = (o.PkminiPoints + 1);
 					c.getPA().writeTabs();
@@ -2455,7 +2329,7 @@ public class PlayerAssistant {
 					o.KC++;
 					o.sendMessage("You recieved 2 Power-Ps Points & 1 PK Point");
 					o.sendMessage("You have defeated " + Misc.optimizeText(c.playerName) + "!");
-					o.lastKilled = Server.playerHandler.players[c.playerId].connectedFrom;
+					o.lastKilled = PlayerHandler.getPlayers()[c.playerId].connectedFrom;
 					if (o.earningPotential >= 85) {
 						o.earningPotential -= 40 + Misc.random(50);
 						int random = (int) (Math.random() * (xEP.length - 1));
@@ -2512,9 +2386,9 @@ public class PlayerAssistant {
 		c.vengOn = false;
 		resetFollowers();
 		c.attackTimer = 10;
-		if (Server.playerHandler.players[c.killerId] != null && Server.playerHandler.players[c.playerKilled] != null) {
-			if (Server.playerHandler.players[c.killerId].connectedFrom.equals(
-					Server.playerHandler.players[c.playerKilled].connectedFrom) && c.inWild() && o.isDead == true) {
+		if (PlayerHandler.getPlayers()[c.killerId] != null && PlayerHandler.getPlayers()[c.playerKilled] != null) {
+			if (PlayerHandler.getPlayers()[c.killerId].connectedFrom.equals(
+					PlayerHandler.getPlayers()[c.playerKilled].connectedFrom) && c.inWild() && o.isDead == true) {
 				o.sendMessage("You Don't Recieve IXP for killing yourself!");
 			}
 			c.faceUpdate(0);
@@ -2614,7 +2488,7 @@ public class PlayerAssistant {
 
 	public void vengOther() {
 		if (c.playerIndex > 0) {
-			Player q = Server.playerHandler.players[c.playerIndex];
+			Player q = PlayerHandler.getPlayers()[c.playerIndex];
 			final int oX = q.getX();
 			final int oY = q.getY();
 			if (c.playerLevel[6] < 93) {
@@ -2714,7 +2588,7 @@ public class PlayerAssistant {
 	public void resetDitchJump(final Client c) {
 		c.isRunning2 = true;
 		c.getPA().sendFrame36(173, 1);
-		c.getCombat().getPlayerAnimIndex(c.getItems().getItemName(c.playerEquipment[c.playerWeapon]).toLowerCase());
+		c.getCombat().getPlayerAnimIndex(ItemAssistant.getItemName(c.playerEquipment[c.playerWeapon]).toLowerCase());
 		c.getPA().requestUpdates();
 	}
 
@@ -2767,10 +2641,10 @@ public class PlayerAssistant {
 	}
 
 	public void resetFollowers() {
-		for (int j = 0; j < Server.playerHandler.players.length; j++) {
-			if (Server.playerHandler.players[j] != null) {
-				if (Server.playerHandler.players[j].followId == c.playerId) {
-					Client c = (Client) Server.playerHandler.players[j];
+		for (int j = 0; j < PlayerHandler.getPlayers().length; j++) {
+			if (PlayerHandler.getPlayers()[j] != null) {
+				if (PlayerHandler.getPlayers()[j].followId == c.playerId) {
+					Client c = (Client) PlayerHandler.getPlayers()[j];
 					c.getPA().resetFollow();
 				}
 			}
@@ -2885,7 +2759,7 @@ public class PlayerAssistant {
 			c.getPA().resetDominion();
 
 		} else { // we are in a duel, respawn outside of arena
-			Client o = (Client) Server.playerHandler.players[c.duelingWith];
+			Client o = (Client) PlayerHandler.getPlayers()[c.duelingWith];
 			if (o != null) {
 				o.getPA().createPlayerHints(10, -1);
 				if (o.duelStatus == 6) {
@@ -3271,15 +3145,15 @@ public class PlayerAssistant {
 	 **/
 
 	public void Player() {
-		if (Server.playerHandler.players[c.followId] == null || Server.playerHandler.players[c.followId].isDead) {
+		if (PlayerHandler.getPlayers()[c.followId] == null || PlayerHandler.getPlayers()[c.followId].isDead) {
 			c.getPA().resetFollow();
 			return;
 		}
 		if (c.freezeTimer > 0) {
 			return;
 		}
-		int otherX = Server.playerHandler.players[c.followId].getX();
-		int otherY = Server.playerHandler.players[c.followId].getY();
+		int otherX = PlayerHandler.getPlayers()[c.followId].getX();
+		int otherY = PlayerHandler.getPlayers()[c.followId].getY();
 		boolean withinDistance = c.goodDistance(otherX, otherY, c.getX(), c.getY(), 2);
 		boolean hallyDistance = c.goodDistance(otherX, otherY, c.getX(), c.getY(), 2);
 		boolean bowDistance = c.goodDistance(otherX, otherY, c.getX(), c.getY(), 6);
@@ -3932,9 +3806,9 @@ public class PlayerAssistant {
 
 				c.sendMessage("Your Skillcape Has Been Added to Your Bank!");
 				c.sendMessage("You've Been Awarded A Mystery Box To Your Bank!");
-				for (int j = 0; j < Server.playerHandler.players.length; j++) {
-					if (Server.playerHandler.players[j] != null) {
-						Client c2 = (Client) Server.playerHandler.players[j];
+				for (int j = 0; j < PlayerHandler.getPlayers().length; j++) {
+					if (PlayerHandler.getPlayers()[j] != null) {
+						Client c2 = (Client) PlayerHandler.getPlayers()[j];
 						c2.sendMessage("[<col=37772>SERVER</col>]<shad=800000000> " + c.playerName + " "
 								+ "just advanced to 199 Prayer!");
 					}
@@ -3954,8 +3828,8 @@ public class PlayerAssistant {
 
 				c.sendMessage("Your Skillcape Has Been Added to Your Bank!");
 				c.sendMessage("You've Been Awarded A Mystery Box To Your Bank!");
-				for (int j = 0; j < Server.playerHandler.players.length; j++) {
-					if (Server.playerHandler.players[j] != null) {
+				for (int j = 0; j < PlayerHandler.getPlayers().length; j++) {
+					if (PlayerHandler.getPlayers()[j] != null) {
 						Client c2 = (Client) Server.playerHandler.players[j];
 						c2.sendMessage("[<col=37772>SERVER</col>]<shad=800000000> " + c.playerName + " "
 								+ "just advanced to 199 Magic!");

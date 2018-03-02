@@ -1,5 +1,6 @@
  package server.model.players.content;
  
+import server.model.items.ItemAssistant;
 import server.model.players.Client;
 import server.util.Misc;
 import server.model.players.PlayerHandler;
@@ -72,12 +73,7 @@ public class weaponbox {
                         rewardRoll = Misc.random(UltraRareRewards.length-1);
                         itemToGive = UltraRareRewards[rewardRoll][0];
                         amountToGive = UltraRareRewards[rewardRoll][1];
-								for (int z = 0; z < Server.playerHandler.players.length; z++) {
-							if (Server.playerHandler.players[z] != null) {
-								Client o = (Client) Server.playerHandler.players[z];
-								o.sendMessage("<col=16711680>["+Misc.optimizeText(c.playerName)+"]</col> <col=15015938>has just received a very rare item from weapon box!");
-							}
-						}
+						PlayerHandler.sendGlobalMessage("<col=16711680>["+Misc.optimizeText(c.playerName)+"]</col> <col=15015938>has just received a very rare item from weapon box!");
                 }
                 if(deleteBox)//Removing the box
                         c.getItems().deleteItem(mysteryBoxID, 1);
@@ -86,6 +82,6 @@ public class weaponbox {
                         c.sendMessage("You open the box to find nothing. What bad luck.");//If you got 0, it says you find nothing.
                 else
                         c.sendMessage("You open the box and find " + (amountToGive > 1 ? "some " : "a ")
-                                        + c.getItems().getItemName(itemToGive) + ".");//If more than one item, use some, otherwise use a.
+                                        + ItemAssistant.getItemName(itemToGive) + ".");//If more than one item, use some, otherwise use a.
         }
 }

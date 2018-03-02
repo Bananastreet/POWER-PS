@@ -1,10 +1,11 @@
 package server.model.players.skills;
 
-import server.model.players.Client;
 import server.Config;
-import server.util.Misc;
+import server.model.players.Client;
 
 public class SkillHandler {
+	
+	public static final int TOTAL_SKILLS = 22;
 
 	public static final int WOODCUTTING_XP = Config.WOODCUTTING_EXPERIENCE;
 	public static final int FIREMAKING_XP = Config.FIREMAKING_EXPERIENCE;

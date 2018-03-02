@@ -23,11 +23,9 @@ public class PlayerHandler {
 
 	static {
 		Runtime.getRuntime().addShutdownHook(new Thread());
-		PlayerSave playerSave;
-		Client cliento1;
 		for (int i = 0; i < Config.MAX_PLAYERS; i++)
 			if (players[i] != null)
-				((Client) players[i]).save.saveGame(Client.cliento2);
+				PlayerSave.saveGame((Client) players[i]);
 	}
 
 	public static void messageAllStaff(String text, boolean message) {
@@ -72,33 +70,7 @@ public class PlayerHandler {
 		players[slot].isActive = true;
 		players[slot].connectedFrom = ((InetSocketAddress) client1.getSession().getRemoteAddress()).getAddress().getHostAddress();
 		if (Config.SERVER_DEBUG)
-			Misc.println("Player Slot " + slot + " slot 0 " + players[0] + " Player Hit " + players[slot]);// does
-																											// nothing....
-																											// ;;players
-																											// dont
-																											// give
-																											// the
-																											// right
-																											// amount
-																											// of
-																											// playesr?
-																											// i
-																											// am
-																											// getting
-																											// the
-																											// right
-																											// amount
-																											// why
-																											// not
-																											// me?
-																											// logout
-																											// log
-																											// inand
-																											// u
-																											// wont
-																											// get
-																											// the
-																											// right
+			Misc.println("Player Slot " + slot + " slot 0 " + players[0] + " Player Hit " + players[slot]);
 		return true;
 	}
 
@@ -295,23 +267,23 @@ public class PlayerHandler {
 			try {
 				if (players[i].disconnected && (System.currentTimeMillis() - players[i].logoutDelay > 10000 || players[i].properLogout || kickAllPlayers)) {
 					if (players[i].inTrade) {
-						Client o = (Client) Server.playerHandler.players[players[i].tradeWith];
+						Client o = (Client) PlayerHandler.players[players[i].tradeWith];
 						if (o != null) {
 							o.getTradeAndDuel().declineTrade();
 						}
 					}
 					if (players[i].duelStatus == 5) {
-						Client o = (Client) Server.playerHandler.players[players[i].duelingWith];
+						Client o = (Client) PlayerHandler.players[players[i].duelingWith];
 						if (o != null) {
 							o.getTradeAndDuel().duelVictory();
 						}
 					} else if (players[i].duelStatus <= 4 && players[i].duelStatus >= 1) {
-						Client o = (Client) Server.playerHandler.players[players[i].duelingWith];
+						Client o = (Client) PlayerHandler.players[players[i].duelingWith];
 						if (o != null) {
 							o.getTradeAndDuel().declineDuel();
 						}
 					}
-					Client o = (Client) Server.playerHandler.players[i];
+					Client o = (Client) PlayerHandler.players[i];
 					if (PlayerSave.saveGame(o)) {
 						System.out.println("Game saved for player " + players[i].playerName);
 					} else {
@@ -341,24 +313,24 @@ public class PlayerHandler {
 			try {
 				if (players[i].disconnected && (System.currentTimeMillis() - players[i].logoutDelay > 10000 || players[i].properLogout || kickAllPlayers)) {
 					if (players[i].inTrade) {
-						Client o = (Client) Server.playerHandler.players[players[i].tradeWith];
+						Client o = (Client) PlayerHandler.players[players[i].tradeWith];
 						if (o != null) {
 							o.getTradeAndDuel().declineTrade();
 						}
 					}
 					if (players[i].duelStatus == 5) {
-						Client o1 = (Client) Server.playerHandler.players[players[i].duelingWith];
+						Client o1 = (Client) PlayerHandler.players[players[i].duelingWith];
 						if (o1 != null) {
 							o1.getTradeAndDuel().duelVictory();
 						}
 					} else if (players[i].duelStatus <= 4 && players[i].duelStatus >= 1) {
-						Client o1 = (Client) Server.playerHandler.players[players[i].duelingWith];
+						Client o1 = (Client) PlayerHandler.players[players[i].duelingWith];
 						if (o1 != null) {
 							o1.getTradeAndDuel().declineDuel();
 						}
 					}
 
-					Client o1 = (Client) Server.playerHandler.players[i];
+					Client o1 = (Client) PlayerHandler.players[i];
 					if (PlayerSave.saveGame(o1)) {
 						System.out.println("Game saved for player " + players[i].playerName);
 					} else {
@@ -367,15 +339,12 @@ public class PlayerHandler {
 					removePlayer(players[i]);
 					players[i] = null;
 				} else {
-					Client o = (Client) Server.playerHandler.players[i];
-					// if(o.g) {
 					if (!players[i].initialized) {
 						players[i].initialize();
 						players[i].initialized = true;
 					} else {
 						players[i].update();
 					}
-					// }
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -427,14 +396,14 @@ public class PlayerHandler {
 		}
 
 		for (int i = 0; i < NPCHandler.maxNPCs; i++) {
-			if (Server.npcHandler.npcs[i] != null) {
-				int id = Server.npcHandler.npcs[i].npcId;
+			if (NPCHandler.npcs[i] != null) {
+				int id = NPCHandler.npcs[i].npcId;
 				if (plr.RebuildNPCList == false && (plr.npcInListBitmap[id >> 3] & (1 << (id & 7))) != 0) {
 
-				} else if (plr.withinDistance(Server.npcHandler.npcs[i]) == false) {
+				} else if (plr.withinDistance(NPCHandler.npcs[i]) == false) {
 
 				} else {
-					plr.addNewNPC(Server.npcHandler.npcs[i], str, updateBlock);
+					plr.addNewNPC(NPCHandler.npcs[i], str, updateBlock);
 				}
 			}
 		}
@@ -519,7 +488,7 @@ public class PlayerHandler {
 			for (int i = 1; i < Config.MAX_PLAYERS; i++) {
 				if (players[i] == null || players[i].isActive == false)
 					continue;
-				Client o = (Client) Server.playerHandler.players[i];
+				Client o = (Client) PlayerHandler.players[i];
 				if (o != null) {
 					o.getPA().updatePM(plr.playerId, 0);
 				}
@@ -528,6 +497,15 @@ public class PlayerHandler {
 		plr.saveCharacter = true;
 		plr.destruct();
 
+	}
+	
+	public static void sendGlobalMessage(String message) {
+		for (Player player : players) {
+			if (player != null) {
+				Client c = (Client) player;
+				c.sendMessage(message);
+			}
+		}
 	}
 	
 	public static Player[] getPlayers() {

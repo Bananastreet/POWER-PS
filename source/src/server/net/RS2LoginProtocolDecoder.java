@@ -39,7 +39,6 @@ public class RS2LoginProtocolDecoder extends CumulativeProtocolDecoder {
 			case 0:
 				if (2 <= in.remaining()) {
 					int protocol = in.get() & 0xff;
-					@SuppressWarnings("unused")
 					int nameHash = in.get() & 0xff;
 					if (protocol == 14) {
 						long serverSessionKey = ((long) (java.lang.Math.random() * 99999999D) << 32)
@@ -57,7 +56,6 @@ public class RS2LoginProtocolDecoder extends CumulativeProtocolDecoder {
 					return false;
 				}
 			case 1:
-				@SuppressWarnings("unused")
 				int loginType = -1, loginPacketSize = -1, loginEncryptPacketSize = -1;
 				if (2 <= in.remaining()) {
 					loginType = in.get() & 0xff; // should be 16 or 18

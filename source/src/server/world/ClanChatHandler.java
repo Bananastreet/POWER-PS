@@ -78,8 +78,8 @@ public class ClanChatHandler {
 				}
 				for (int i = 0; i < clans[clanId].members.length; i++) {
 					if (clans[clanId].members[i] > 0) {
-						if (PlayerHandler.players[clans[clanId].members[i]] != null) {
-							c.getPA().sendFrame126(PlayerHandler.players[clans[clanId].members[i]].playerName,
+						if (PlayerHandler.getPlayers()[clans[clanId].members[i]] != null) {
+							c.getPA().sendFrame126(PlayerHandler.getPlayers()[clans[clanId].members[i]].playerName,
 									slotToFill);
 							slotToFill++;
 						}
@@ -110,7 +110,7 @@ public class ClanChatHandler {
 	}
 
 	public void addToClan(int playerId, int clanId) {
-		Client c = (Client) PlayerHandler.players[playerId];
+		Client c = (Client) PlayerHandler.getPlayers()[playerId];
 		if (c.inAclan == true) {
 			c.sendMessage("You are already in a clan chat!");
 			return;
@@ -143,7 +143,7 @@ public class ClanChatHandler {
 					}
 					c.inAclan = true;
 					clans[clanId].playerz += 1;
-					messageToClan(PlayerHandler.players[playerId].playerName + " has joined the clan, be friendly!",
+					messageToClan(PlayerHandler.getPlayers()[playerId].playerName + " has joined the clan, be friendly!",
 							clanId);
 					updateClanChat(clanId);
 					return;
@@ -154,12 +154,12 @@ public class ClanChatHandler {
 
 	public void leaveClan(int playerId, int clanId) {
 		if (clanId < 0) {
-			Client c = (Client) PlayerHandler.players[playerId];
+			Client c = (Client) PlayerHandler.getPlayers()[playerId];
 			c.sendMessage("You are not in a clan.");
 			return;
 		}
 		if (clans[clanId] != null) {
-			if (PlayerHandler.players[playerId].playerName.equalsIgnoreCase(clans[clanId].owner)) {
+			if (PlayerHandler.getPlayers()[playerId].playerName.equalsIgnoreCase(clans[clanId].owner)) {
 				messageToClan("Sorry, The Clan Chat has been ended by the owner.", clanId);
 				destructClan(PlayerHandler.players[playerId].clanId);
 				return;
@@ -184,7 +184,7 @@ public class ClanChatHandler {
 			}
 			updateClanChat(clanId);
 		} else {
-			Client c = (Client) PlayerHandler.players[playerId];
+			Client c = (Client) PlayerHandler.getPlayers()[playerId];
 			PlayerHandler.players[playerId].clanId = -1;
 			c.sendMessage("You are not in a clan.");
 		}
@@ -242,7 +242,7 @@ public class ClanChatHandler {
 
 				String newMessage = "[<col=597105>" + clans[clanId].name + "</col>] " + Misc.optimizeText(PlayerHandler.players[playerId].playerName) + ": <col=12654363>" + Misc.ucFirst(message);
 				// sendClan(String name, String message, String clan, int rights)
-				c.sendClan(PlayerHandler.players[playerId].playerName, newMessage, clans[clanId].name, PlayerHandler.players[playerId].playerRights);
+				c.sendClan(PlayerHandler.getPlayers()[playerId].playerName, newMessage, clans[clanId].name, PlayerHandler.getPlayers()[playerId].playerRights);
 			}
 		}
 	}

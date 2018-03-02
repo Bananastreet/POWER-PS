@@ -355,7 +355,7 @@ public class Stream
     }
 
     public byte buffer[] = null;
-    public int currentOffset = 0;
+	public int currentOffset = 0;
     public int bitPosition = 0;
 
     public static int bitMaskOut[] = new int[32];
@@ -386,4 +386,13 @@ public class Stream
 
     public ISAACRandomGen packetEncryption = null;
 
+    
+    public byte[] getBuffer() {
+		return buffer;
+	}
+
+	public void setBuffer(byte[] buffer) {
+		this.buffer = buffer;
+	}
+    
 }

@@ -3,7 +3,9 @@ package server.model.players.skills;
 import java.util.HashMap;
 import server.task.Task;
 import server.Server;
+import server.model.npcs.NPCHandler;
 import server.model.players.Client;
+import server.model.players.PlayerHandler;
 
 public class Dungeoneering {
 
@@ -42,8 +44,8 @@ public class Dungeoneering {
 						c.SaveGame();
 					}
 					c.juststarted = false;
-					Server.npcHandler.spawnDungNpcs(c, 4477, 3255, 9333, c.playerId * 4, 0, 140, 24, 240, 230, true,
-							false); // mad mummy
+					NPCHandler.spawnDungNpcs(c, 4477, 3255, 9333, c.playerId * 4, 0, 140, 24, 240, 230, true, false); // mad
+																														// mummy
 					// c.getItems().addItem(391, 1);
 					c.sendMessage("<shad=6081134>[Dungeoneering] <shad=15695415>Guardian's Spawned (Wave 2)!");
 					hasSpawnedNPCswave2 = true;
@@ -100,10 +102,8 @@ public class Dungeoneering {
 						c.SaveGame();
 					}
 					Server.npcHandler.bosses();
-					Server.npcHandler.spawnDungNpcs(c, 3622, 3238, 9331, c.playerId * 4, 0, 100, 5, 30, 40, true,
-							false); // skele
-					Server.npcHandler.spawnDungNpcs(c, 3067, 3238, 9333, c.playerId * 4, 0, 170, 30, 230, 190, true,
-							false); // leon
+					NPCHandler.spawnDungNpcs(c, 3622, 3238, 9331, c.playerId * 4, 0, 100, 5, 30, 40, true, false); // skele
+					NPCHandler.spawnDungNpcs(c, 3067, 3238, 9333, c.playerId * 4, 0, 170, 30, 230, 190, true, false); // leon
 					c.juststarted = false;
 					c.sendMessage("<shad=6081134>[Dungeoneering] <shad=15695415>Guardian's Spawned (Wave 3)!");
 					hasSpawnedNPCswave3 = true;
@@ -124,14 +124,10 @@ public class Dungeoneering {
 			public void execute() {
 				if (!hasSpawnedNPCs) {
 					c.juststarted = false;
-					Server.npcHandler.spawnDungNpcs(c, 3622, 3239, 9326, c.playerId * 4, 0, 100, 5, 30, 40, true,
-							false);
-					Server.npcHandler.spawnDungNpcs(c, 3622, 3239, 9326, c.playerId * 4, 0, 140, 5, 30, 40, true,
-							false);
-					Server.npcHandler.spawnDungNpcs(c, 3622, 3243, 9327, c.playerId * 4, 0, 100, 5, 30, 40, true,
-							false);
-					Server.npcHandler.spawnDungNpcs(c, 3622, 3234, 9326, c.playerId * 4, 0, 120, 5, 30, 40, true,
-							false);
+					NPCHandler.spawnDungNpcs(c, 3622, 3239, 9326, c.playerId * 4, 0, 100, 5, 30, 40, true, false);
+					NPCHandler.spawnDungNpcs(c, 3622, 3239, 9326, c.playerId * 4, 0, 140, 5, 30, 40, true, false);
+					NPCHandler.spawnDungNpcs(c, 3622, 3243, 9327, c.playerId * 4, 0, 100, 5, 30, 40, true, false);
+					NPCHandler.spawnDungNpcs(c, 3622, 3234, 9326, c.playerId * 4, 0, 120, 5, 30, 40, true, false);
 					c.sendMessage("<shad=6081134>[Dungeoneering] <shad=15695415>Guardian's Spawned!");
 					hasSpawnedNPCs = true;
 					c.needstorelog = true;
@@ -150,12 +146,9 @@ public class Dungeoneering {
 			public void execute() {
 				if (!hasSpawnedNPCs) {
 					c.juststarted = false;
-					Server.npcHandler.spawnDungNpcs(c, 3622, 3239, 9326, c.playerId * 4, 0, 100, 5, 30, 40, true,
-							false);
-					Server.npcHandler.spawnDungNpcs(c, 3622, 3239, 9326, c.playerId * 4, 0, 140, 5, 30, 40, true,
-							false);
-					Server.npcHandler.spawnDungNpcs(c, 3622, 3243, 9327, c.playerId * 4, 0, 100, 5, 30, 40, true,
-							false);
+					NPCHandler.spawnDungNpcs(c, 3622, 3239, 9326, c.playerId * 4, 0, 100, 5, 30, 40, true, false);
+					NPCHandler.spawnDungNpcs(c, 3622, 3239, 9326, c.playerId * 4, 0, 140, 5, 30, 40, true, false);
+					NPCHandler.spawnDungNpcs(c, 3622, 3243, 9327, c.playerId * 4, 0, 100, 5, 30, 40, true, false);
 					c.sendMessage(
 							"<shad=6081134>[Dungeoneering] <shad=15695415>You logged out with 1 kill, spawned 3 Guardians!");
 					hasSpawnedNPCs = true;
@@ -174,10 +167,8 @@ public class Dungeoneering {
 			public void execute() {
 				if (!hasSpawnedNPCs) {
 					c.juststarted = false;
-					Server.npcHandler.spawnDungNpcs(c, 3622, 3239, 9326, c.playerId * 4, 0, 100, 5, 30, 40, true,
-							false);
-					Server.npcHandler.spawnDungNpcs(c, 3622, 3239, 9326, c.playerId * 4, 0, 140, 5, 30, 40, true,
-							false);
+					NPCHandler.spawnDungNpcs(c, 3622, 3239, 9326, c.playerId * 4, 0, 100, 5, 30, 40, true, false);
+					NPCHandler.spawnDungNpcs(c, 3622, 3239, 9326, c.playerId * 4, 0, 140, 5, 30, 40, true, false);
 					c.sendMessage(
 							"<shad=6081134>[Dungeoneering] <shad=15695415>You logged out with 2 kills, spawned 2 Guardians!");
 					hasSpawnedNPCs = true;
@@ -196,8 +187,7 @@ public class Dungeoneering {
 			public void execute() {
 				if (!hasSpawnedNPCs) {
 					c.juststarted = false;
-					Server.npcHandler.spawnDungNpcs(c, 3622, 3239, 9326, c.playerId * 4, 0, 100, 5, 30, 40, true,
-							false);
+					NPCHandler.spawnDungNpcs(c, 3622, 3239, 9326, c.playerId * 4, 0, 100, 5, 30, 40, true, false);
 					c.sendMessage(
 							"<shad=6081134>[Dungeoneering] <shad=15695415>You logged out with 3 kills, spawned 1 Guardian!");
 					hasSpawnedNPCs = true;
@@ -217,8 +207,7 @@ public class Dungeoneering {
 				if (!hasSpawnedNPCs) {
 					Server.npcHandler.bosses();
 					c.juststarted = false;
-					Server.npcHandler.spawnDungNpcs(c, 3067, 3238, 9333, c.playerId * 4, 0, 170, 30, 230, 190, true,
-							false); // leon
+					NPCHandler.spawnDungNpcs(c, 3067, 3238, 9333, c.playerId * 4, 0, 170, 30, 230, 190, true, false); // leon
 					c.sendMessage(
 							"<shad=6081134>[Dungeoneering] <shad=15695415>You logged out with 6 kills, spawned 1 Boss!");
 					hasSpawnedNPCs = true;
@@ -239,10 +228,11 @@ public class Dungeoneering {
 				if (!hasSpawnedNPCs4) {
 					Server.npcHandler.bosses();
 					c.juststarted = false;
-					Server.npcHandler.spawnDungNpcs(c, 10040, 3027, 5234, c.playerId * 4, 1, 150, 30, 240, 200, true,
-							false); // ice bone guy
-					Server.npcHandler.spawnDungNpcs(c, 3200, 3016, 5234, c.playerId * 4, 1, 80, 30, 150, 200, true,
-							false); // chaos ele
+					NPCHandler.spawnDungNpcs(c, 10040, 3027, 5234, c.playerId * 4, 1, 150, 30, 240, 200, true, false); // ice
+																														// bone
+																														// guy
+					NPCHandler.spawnDungNpcs(c, 3200, 3016, 5234, c.playerId * 4, 1, 80, 30, 150, 200, true, false); // chaos
+																														// ele
 					c.sendMessage("<shad=6081134>[Dungeoneering] <shad=15695415>Spawned Final Bosses! Kill them!");
 					hasSpawnedNPCs4 = true;
 					handleChaosEleTeleporting(c);
@@ -298,7 +288,7 @@ public class Dungeoneering {
 		}
 		if (c.dungn == 1) {
 			c.getPA().movePlayer(3237, 9327, c.playerId * 4);
-			Server.npcHandler.destroyDungNpcs(c);
+			NPCHandler.destroyDungNpcs(c);
 			c.isSkulled = true;
 			c.getPA().refreshSkill(5);
 			c.InDung = true;
@@ -309,12 +299,12 @@ public class Dungeoneering {
 			c.isSkulled = true;
 			c.getPA().refreshSkill(5);
 			c.InDung = true;
-			Server.npcHandler.destroyDungNpcs(c);
+			NPCHandler.destroyDungNpcs(c);
 			spawnWave2CauseOfRelog(c);
 		}
 		if (c.dungn == 3) {
 			c.getPA().movePlayer(3237, 9327, c.playerId * 4);
-			Server.npcHandler.destroyDungNpcs(c);
+			NPCHandler.destroyDungNpcs(c);
 			c.isSkulled = true;
 			c.getPA().refreshSkill(5);
 			c.InDung = true;
@@ -323,14 +313,14 @@ public class Dungeoneering {
 		if (c.dungn == 4) {
 			c.getPA().movePlayer(3261, 9329, c.playerId * 4);
 			c.sendMessage("Enter the Door");
-			Server.npcHandler.destroyDungNpcs(c);
+			NPCHandler.destroyDungNpcs(c);
 			c.isSkulled = true;
 			c.getPA().refreshSkill(5);
 			c.InDung = true;
 		}
 		if (c.dungn == 5) {
 			c.getPA().movePlayer(3244, 9333, c.playerId * 4);
-			Server.npcHandler.destroyDungNpcs(c);
+			NPCHandler.destroyDungNpcs(c);
 			c.isSkulled = true;
 			c.getPA().refreshSkill(5);
 			c.InDung = true;
@@ -338,7 +328,7 @@ public class Dungeoneering {
 		}
 		if (c.dungn == 6) {
 			c.getPA().movePlayer(3233, 9332, c.playerId * 4);
-			Server.npcHandler.destroyDungNpcs(c);
+			NPCHandler.destroyDungNpcs(c);
 			c.isSkulled = true;
 			c.getPA().refreshSkill(5);
 			c.InDung = true;
@@ -346,7 +336,7 @@ public class Dungeoneering {
 		}
 		if (c.dungn == 7) {
 			c.getPA().movePlayer(3219, 9327, c.playerId * 4);
-			Server.npcHandler.destroyDungNpcs(c);
+			NPCHandler.destroyDungNpcs(c);
 			c.isSkulled = true;
 			c.getPA().refreshSkill(5);
 			c.InDung = true;
@@ -355,7 +345,7 @@ public class Dungeoneering {
 		}
 		if (c.dungn == 8 || c.dungn == 9) {
 			c.getPA().movePlayer(3022, 5234, c.playerId * 4);
-			Server.npcHandler.destroyDungNpcs(c);
+			NPCHandler.destroyDungNpcs(c);
 			c.isSkulled = true;
 			c.getPA().refreshSkill(5);
 			c.InDung = true;
@@ -386,11 +376,9 @@ public class Dungeoneering {
 		c.IsIDung = 1;
 		// c.getItems().deleteAllItems();
 		c.isChoosingDung = true;
-		Server.npcHandler.destroyDungNpcs(c);
+		NPCHandler.destroyDungNpcs(c);
 		System.out.println("Teled to dung");
-		Client o = (Client) Server.playerHandler.players[c.duelingWith];
 		c.getTradeAndDuel().declineDuel();
-		// o.getTradeAndDuel().declineDuel();
 		if (!hasSentMessage == true) {
 			// c.sendMessage("<shad=6081134>[Dungeoneering] <shad=15695415>All items that
 			// were in your inventory have been banked.");

@@ -2,9 +2,11 @@ package server.model.items;
 
 import server.Config;
 import server.Server;
+import server.model.npcs.NPCHandler;
 import server.model.players.Client;
 import server.util.Misc;
 import server.model.players.EarningPotential;
+import server.model.players.PlayerHandler;
 
 public class ItemAssistant {
 
@@ -395,7 +397,7 @@ public class ItemAssistant {
 	 **/
 
 	public void dropAllItems() {
-		Client o = (Client) Server.playerHandler.players[c.killerId];
+		Client o = (Client) PlayerHandler.getPlayers()[c.killerId];
 		if (c.playerRights == 3/* || c.isInArd() || c.isInFala() */) {
 			return;
 		}
@@ -439,7 +441,7 @@ public class ItemAssistant {
 	}
 
 	public void dropAllItemsPVP() {
-		Client o = (Client) Server.playerHandler.players[c.killerId];
+		Client o = (Client) PlayerHandler.getPlayers()[c.killerId];
 		EarningPotential.giveBonusDrops(o, c);
 	}
 
@@ -2506,8 +2508,7 @@ public class ItemAssistant {
 				resetBonus();
 				getBonus();
 				writeBonus();
-				c.getCombat()
-						.getPlayerAnimIndex(c.getItems().getItemName(c.playerEquipment[c.playerWeapon]).toLowerCase());
+				c.getCombat().getPlayerAnimIndex(getItemName(c.playerEquipment[c.playerWeapon]).toLowerCase());
 				c.getPA().requestUpdates();
 				return true;
 			} else {
@@ -2535,12 +2536,11 @@ public class ItemAssistant {
 				c.playerEquipment[targetSlot] = wearID;
 				c.playerEquipmentN[targetSlot] = wearAmount;
 				c.getItems().sendWeapon(c.playerEquipment[c.playerWeapon],
-						c.getItems().getItemName(c.playerEquipment[c.playerWeapon]));
+						getItemName(c.playerEquipment[c.playerWeapon]));
 				c.getItems().resetBonus();
 				c.getItems().getBonus();
 				c.getItems().writeBonus();
-				c.getCombat()
-						.getPlayerAnimIndex(c.getItems().getItemName(c.playerEquipment[c.playerWeapon]).toLowerCase());
+				c.getCombat().getPlayerAnimIndex(getItemName(c.playerEquipment[c.playerWeapon]).toLowerCase());
 				c.updateRequired = true;
 				c.setAppearanceUpdateRequired(true);
 			}
@@ -2591,8 +2591,7 @@ public class ItemAssistant {
 						resetBonus();
 						getBonus();
 						writeBonus();
-						c.getCombat().getPlayerAnimIndex(
-								c.getItems().getItemName(c.playerEquipment[c.playerWeapon]).toLowerCase());
+						c.getCombat().getPlayerAnimIndex(getItemName(c.playerEquipment[c.playerWeapon]).toLowerCase());
 						c.getOutStream().createFrame(34);
 						c.getOutStream().writeWord(6);
 						c.getOutStream().writeWord(1688);
@@ -3079,9 +3078,9 @@ public class ItemAssistant {
 	public void fromBank(int itemID, int fromSlot, int amount) {
 		if (!c.isBanking) {
 			c.getPA().closeAllWindows();
-			for (int j = 0; j < Server.playerHandler.players.length; j++) {
-				if (Server.playerHandler.players[j] != null) {
-					Client c2 = (Client) Server.playerHandler.players[j];
+			for (int j = 0; j < PlayerHandler.getPlayers().length; j++) {
+				if (PlayerHandler.getPlayers()[j] != null) {
+					Client c2 = (Client) PlayerHandler.getPlayers()[j];
 					// c2.sendMessage("<shad=15695415>[Abuse]: "+Misc.optimizeText(c.playerName)+"
 					// Tried to Bank Hack - Stopped.");
 				}
@@ -3274,7 +3273,7 @@ public class ItemAssistant {
 
 	public void deleteEquipment(int i, int j) {
 		synchronized (c) {
-			if (Server.playerHandler.players[c.playerId] == null) {
+			if (PlayerHandler.getPlayers()[c.playerId] == null) {
 				return;
 			}
 			if (i < 0) {
@@ -3409,8 +3408,8 @@ public class ItemAssistant {
 		 * if (c.playerEquipment[c.playerWeapon] == 13883) // MORRIGAN'S AXE return; if
 		 * (c.playerEquipment[c.playerWeapon] == 13879) // MORRIGAN'S JAVELIN return;
 		 */
-		int enemyX = Server.npcHandler.npcs[c.oldNpcIndex].getX();
-		int enemyY = Server.npcHandler.npcs[c.oldNpcIndex].getY();
+		int enemyX = NPCHandler.getNpcs()[c.oldNpcIndex].getX();
+		int enemyY = NPCHandler.getNpcs()[c.oldNpcIndex].getY();
 		if (Misc.random(10) >= 4) {
 			if (Server.itemHandler.itemAmount(c.playerName, c.rangeItemUsed, enemyX, enemyY) == 0) {
 				Server.itemHandler.createGroundItem(c, c.rangeItemUsed, enemyX, enemyY, 1, c.getId());
@@ -3423,8 +3422,8 @@ public class ItemAssistant {
 	}
 
 	public void dropArrowPlayer() {
-		int enemyX = Server.playerHandler.players[c.oldPlayerIndex].getX();
-		int enemyY = Server.playerHandler.players[c.oldPlayerIndex].getY();
+		int enemyX = PlayerHandler.getPlayers()[c.oldPlayerIndex].getX();
+		int enemyY = PlayerHandler.getPlayers()[c.oldPlayerIndex].getY();
 		if (c.playerEquipment[c.playerCape] == 10499) // AVA'S ACCUMAlator
 			return;
 		/*
