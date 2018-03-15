@@ -19,213 +19,207 @@ public final class ObjectDef {
 		objectDef.type = i;
 		objectDef.setDefaults();
 		objectDef.readValues(stream);
-		if (i == 11214) {
-			objectDef.name = "Empty space";
-			objectDef.description = "You can build something here.".getBytes();
-			objectDef.anInt744 = 1;
-			objectDef.anInt761 = 1;
-			objectDef.anIntArray773 = new int[1];
-			objectDef.anIntArray773[0] = 50099;
-			objectDef.itemActions = new String[5];
-			objectDef.itemActions[0] = "Build";
-			objectDef.hasActions = true;
-			objectDef.aBoolean767 = false;
-			objectDef.aBoolean762 = false;
-			objectDef.aBoolean769 = false;
-		}
-		if (i == 11215) {
-			objectDef.name = "Prayer-Altar";
-			objectDef.description = "You can build an altar here.".getBytes();
-			objectDef.anInt744 = 1;
-			objectDef.anInt761 = 1;
-			objectDef.anIntArray773 = new int[1];
-			objectDef.anIntArray773[0] = 50099;
-			objectDef.itemActions = new String[5];
-			objectDef.itemActions[0] = "Build";
-			objectDef.hasActions = true;
-			objectDef.aBoolean767 = false;
-			objectDef.aBoolean762 = false;
-			objectDef.aBoolean769 = false;
+
+		switch (i) {
+			case 11214:
+				objectDef.name = "Empty space";
+				objectDef.description = "You can build something here.".getBytes();
+				objectDef.anInt744 = 1;
+				objectDef.anInt761 = 1;
+				objectDef.anIntArray773 = new int[1];
+				objectDef.anIntArray773[0] = 50099;
+				objectDef.itemActions = new String[5];
+				objectDef.itemActions[0] = "Build";
+				objectDef.hasActions = true;
+				objectDef.aBoolean767 = false;
+				objectDef.aBoolean762 = false;
+				objectDef.aBoolean769 = false;
+				break;
+
+			case 11215:
+				objectDef.name = "Prayer-Altar";
+				objectDef.description = "You can build an altar here.".getBytes();
+				objectDef.anInt744 = 1;
+				objectDef.anInt761 = 1;
+				objectDef.anIntArray773 = new int[1];
+				objectDef.anIntArray773[0] = 50099;
+				objectDef.itemActions = new String[5];
+				objectDef.itemActions[0] = "Build";
+				objectDef.hasActions = true;
+				objectDef.aBoolean767 = false;
+				objectDef.aBoolean762 = false;
+				objectDef.aBoolean769 = false;
+				break;
+
+			case 6072:
+			case 6073:
+				objectDef.name = "Power-ps Bank";
+				objectDef.description = "You can bank here..".getBytes();
+				objectDef.itemActions = new String[5];
+				objectDef.itemActions[0] = "Open Bank";
+				objectDef.hasActions = true;
+				break;
+
+			case 1099:
+				objectDef.name = "Broken Throne";
+				objectDef.description = "Fix it..".getBytes();
+				objectDef.itemActions = new String[5];
+				objectDef.itemActions[0] = "Fix";
+				objectDef.hasActions = true;
+				break;
+
+			case 11216:
+				objectDef.name = "Bed";
+				objectDef.description = "You can build a bed here.".getBytes();
+				objectDef.anInt744 = 1;
+				objectDef.anInt761 = 1;
+				objectDef.anIntArray773 = new int[1];
+				objectDef.anIntArray773[0] = 50099;
+				objectDef.itemActions = new String[5];
+				objectDef.itemActions[0] = "Build";
+				objectDef.hasActions = true;
+				objectDef.aBoolean767 = false;
+				objectDef.aBoolean762 = false;
+				objectDef.aBoolean769 = false;
+				break;
+
+			case 823:
+				objectDef.itemActions = new String[5];
+				objectDef.itemActions[0] = "Hit";
+				objectDef.hasActions = true;
+				break;
+
+			case 822:
+				objectDef.itemActions = new String[5];
+				objectDef.itemActions[0] = "Lift";
+				objectDef.hasActions = true;
+				break;
+
+			case 3563:
+				objectDef.itemActions = new String[5];
+				objectDef.itemActions[0] = "Use";
+				objectDef.hasActions = true;
+				break;
+
+			case 11217:
+				objectDef.name = "Tree";
+				objectDef.description = "You can plant a tree here.".getBytes();
+				objectDef.anInt744 = 1;
+				objectDef.anInt761 = 1;
+				objectDef.anIntArray773 = new int[1];
+				objectDef.anIntArray773[0] = 50099;
+				objectDef.itemActions = new String[5];
+				objectDef.itemActions[0] = "Plant";
+				objectDef.hasActions = true;
+				objectDef.aBoolean767 = false;
+				objectDef.aBoolean762 = false;
+				objectDef.aBoolean769 = false;
+				break;
+
+			case 1311:
+				objectDef.itemActions = new String[5];
+				objectDef.itemActions[0] = "Cut";
+				break;
+
+			case 1532:
+			case 1535:
+			case 2529:
+				objectDef.name = "Door";
+				objectDef.description = "A Door For The Minigame.".getBytes();
+				objectDef.itemActions = new String[5];
+				objectDef.itemActions[0] = "Unlock";
+				objectDef.hasActions = true;
+				break;
+
+			case 11219:
+				objectDef.name = "Bank Chest";
+				objectDef.description = "You can build a bank here.".getBytes();
+				objectDef.anInt744 = 1;
+				objectDef.anInt761 = 1;
+				objectDef.anIntArray773 = new int[1];
+				objectDef.anIntArray773[0] = 50099;
+				objectDef.itemActions = new String[5];
+				objectDef.itemActions[0] = "Build";
+				objectDef.hasActions = true;
+				objectDef.aBoolean767 = false;
+				objectDef.aBoolean762 = false;
+				objectDef.aBoolean769 = false;
+				break;
+
+			case 11220:
+				objectDef.name = "Burner";
+				objectDef.description = "Allows you to build two lecterns".getBytes();
+				objectDef.anInt744 = 1;
+				objectDef.anInt761 = 1;
+				objectDef.anIntArray773 = new int[1];
+				objectDef.anIntArray773[0] = 50099;
+				objectDef.itemActions = new String[5];
+				objectDef.itemActions[0] = "Build";
+				objectDef.hasActions = true;
+				objectDef.aBoolean767 = false;
+				objectDef.aBoolean762 = false;
+				objectDef.aBoolean769 = false;
+				break;
+
+			case 11212:
+				objectDef.name = "Teleporter";
+				objectDef.description = "Allows you to teleport to places.".getBytes();
+				objectDef.anInt744 = 1;
+				objectDef.anInt761 = 1;
+				objectDef.anIntArray773 = new int[1];
+				objectDef.anIntArray773[0] = 50099;
+				objectDef.itemActions = new String[5];
+				objectDef.itemActions[0] = "Build";
+				objectDef.hasActions = true;
+				objectDef.aBoolean767 = false;
+				objectDef.aBoolean762 = false;
+				objectDef.aBoolean769 = false;
+				break;
+
+			case 11209:
+				objectDef.name = "Crystal";
+				objectDef.description = "Allows you to create teleport tablets.".getBytes();
+				objectDef.anInt744 = 1;
+				objectDef.anInt761 = 1;
+				objectDef.anIntArray773 = new int[1];
+				objectDef.anIntArray773[0] = 50099;
+				objectDef.itemActions = new String[5];
+				objectDef.itemActions[0] = "Build";
+				objectDef.hasActions = true;
+				objectDef.aBoolean767 = false;
+				objectDef.aBoolean762 = false;
+				objectDef.aBoolean769 = false;
+				break;
+
+			case 13660:
+				objectDef.name = "Pokeball";
+				objectDef.description = "'Power-ps's Pokemon Mini-Game.".getBytes();
+				objectDef.anInt744 = 1;
+				objectDef.anInt761 = 1;
+				objectDef.anIntArray773 = new int[1];
+				objectDef.anIntArray773[0] = 52100;
+				objectDef.itemActions = new String[5];
+				objectDef.itemActions[0] = "Look Closely At";
+				objectDef.hasActions = true;
+				objectDef.aBoolean767 = false;
+				objectDef.aBoolean762 = false;
+				objectDef.aBoolean769 = false;
+				break;
+
+			case 3994:
+				objectDef.itemActions = new String[5];
+				objectDef.name = "Small Furnace";
+				objectDef.itemActions[1] = "Use";
+				break;
+
+			case 2152:
+				objectDef.itemActions = new String[5];
+				objectDef.name = "Summoning Obelisk";
+				objectDef.itemActions[1] = "Infuse Pouches";
+				// objectDef.itemActions[2] = "Infuse Scrolls";
+				break;
 		}
 
-		if (i == 6072) {
-			objectDef.name = "Power-ps Bank";
-			objectDef.description = "You can bank here..".getBytes();
-			objectDef.itemActions = new String[5];
-			objectDef.itemActions[0] = "Open Bank";
-			objectDef.hasActions = true;
-		}
-		if (i == 1099) {
-			objectDef.name = "Broken Throne";
-			objectDef.description = "Fix it..".getBytes();
-			objectDef.itemActions = new String[5];
-			objectDef.itemActions[0] = "Fix";
-			objectDef.hasActions = true;
-		}
-		if (i == 6073) {
-			objectDef.name = "Power-ps Bank";
-			objectDef.description = "You can bank here..".getBytes();
-			objectDef.itemActions = new String[5];
-			objectDef.itemActions[0] = "Open Bank";
-			objectDef.hasActions = true;
-		}
-
-		if (i == 11216) {
-			objectDef.name = "Bed";
-			objectDef.description = "You can build a bed here.".getBytes();
-			objectDef.anInt744 = 1;
-			objectDef.anInt761 = 1;
-			objectDef.anIntArray773 = new int[1];
-			objectDef.anIntArray773[0] = 50099;
-			objectDef.itemActions = new String[5];
-			objectDef.itemActions[0] = "Build";
-			objectDef.hasActions = true;
-			objectDef.aBoolean767 = false;
-			objectDef.aBoolean762 = false;
-			objectDef.aBoolean769 = false;
-		}
-
-		if (i == 823) {
-			objectDef.itemActions = new String[5];
-			objectDef.itemActions[0] = "Hit";
-			objectDef.hasActions = true;
-		}
-		if (i == 822) {
-			objectDef.itemActions = new String[5];
-			objectDef.itemActions[0] = "Lift";
-			objectDef.hasActions = true;
-		}
-		if (i == 3563) {
-			objectDef.itemActions = new String[5];
-			objectDef.itemActions[0] = "Use";
-			objectDef.hasActions = true;
-		}
-		if (i == 11217) {
-			objectDef.itemActions = new String[5];
-			objectDef.itemActions[0] = "Cut";
-			objectDef.hasActions = true;
-		}
-		if (i == 11217) {
-			objectDef.name = "Tree";
-			objectDef.description = "You can plant a tree here.".getBytes();
-			objectDef.anInt744 = 1;
-			objectDef.anInt761 = 1;
-			objectDef.anIntArray773 = new int[1];
-			objectDef.anIntArray773[0] = 50099;
-			objectDef.itemActions = new String[5];
-			objectDef.itemActions[0] = "Plant";
-			objectDef.hasActions = true;
-			objectDef.aBoolean767 = false;
-			objectDef.aBoolean762 = false;
-			objectDef.aBoolean769 = false;
-		}
-
-		if (i == 1311) {
-			objectDef.itemActions = new String[5];
-			objectDef.itemActions[0] = "Cut";
-		}
-		if (i == 1532) {
-			objectDef.name = "Door";
-			objectDef.description = "A Door For The Minigame.".getBytes();
-			objectDef.itemActions = new String[5];
-			objectDef.itemActions[0] = "Unlock";
-			objectDef.hasActions = true;
-		}
-		if (i == 1535) {
-			objectDef.name = "Door";
-			objectDef.description = "A Door For The Minigame.".getBytes();
-			objectDef.itemActions = new String[5];
-			objectDef.itemActions[0] = "Unlock";
-			objectDef.hasActions = true;
-		}
-		if (i == 2529) {
-			objectDef.name = "Door";
-			objectDef.description = "A Door For The Minigame.".getBytes();
-			objectDef.itemActions = new String[5];
-			objectDef.itemActions[0] = "Unlock";
-			objectDef.hasActions = true;
-		}
-		if (i == 11219) {
-			objectDef.name = "Bank Chest";
-			objectDef.description = "You can build a bank here.".getBytes();
-			objectDef.anInt744 = 1;
-			objectDef.anInt761 = 1;
-			objectDef.anIntArray773 = new int[1];
-			objectDef.anIntArray773[0] = 50099;
-			objectDef.itemActions = new String[5];
-			objectDef.itemActions[0] = "Build";
-			objectDef.hasActions = true;
-			objectDef.aBoolean767 = false;
-			objectDef.aBoolean762 = false;
-			objectDef.aBoolean769 = false;
-		}
-		if (i == 11220) {
-			objectDef.name = "Burner";
-			objectDef.description = "Allows you to build two lecterns".getBytes();
-			objectDef.anInt744 = 1;
-			objectDef.anInt761 = 1;
-			objectDef.anIntArray773 = new int[1];
-			objectDef.anIntArray773[0] = 50099;
-			objectDef.itemActions = new String[5];
-			objectDef.itemActions[0] = "Build";
-			objectDef.hasActions = true;
-			objectDef.aBoolean767 = false;
-			objectDef.aBoolean762 = false;
-			objectDef.aBoolean769 = false;
-		}
-		if (i == 11212) {
-			objectDef.name = "Teleporter";
-			objectDef.description = "Allows you to teleport to places.".getBytes();
-			objectDef.anInt744 = 1;
-			objectDef.anInt761 = 1;
-			objectDef.anIntArray773 = new int[1];
-			objectDef.anIntArray773[0] = 50099;
-			objectDef.itemActions = new String[5];
-			objectDef.itemActions[0] = "Build";
-			objectDef.hasActions = true;
-			objectDef.aBoolean767 = false;
-			objectDef.aBoolean762 = false;
-			objectDef.aBoolean769 = false;
-		}
-		if (i == 11209) {
-			objectDef.name = "Crystal";
-			objectDef.description = "Allows you to create teleport tablets.".getBytes();
-			objectDef.anInt744 = 1;
-			objectDef.anInt761 = 1;
-			objectDef.anIntArray773 = new int[1];
-			objectDef.anIntArray773[0] = 50099;
-			objectDef.itemActions = new String[5];
-			objectDef.itemActions[0] = "Build";
-			objectDef.hasActions = true;
-			objectDef.aBoolean767 = false;
-			objectDef.aBoolean762 = false;
-			objectDef.aBoolean769 = false;
-		}
-		if (i == 13660) {
-			objectDef.name = "Pokeball";
-			objectDef.description = "'Power-ps's Pokemon Mini-Game.".getBytes();
-			objectDef.anInt744 = 1;
-			objectDef.anInt761 = 1;
-			objectDef.anIntArray773 = new int[1];
-			objectDef.anIntArray773[0] = 52100;
-			objectDef.itemActions = new String[5];
-			objectDef.itemActions[0] = "Look Closely At";
-			objectDef.hasActions = true;
-			objectDef.aBoolean767 = false;
-			objectDef.aBoolean762 = false;
-			objectDef.aBoolean769 = false;
-		}
-		if (i == 3994) {
-			objectDef.itemActions = new String[5];
-			objectDef.name = "Small Furnace";
-			objectDef.itemActions[1] = "Use";
-		}
-		if (i == 2152) {
-			objectDef.itemActions = new String[5];
-			objectDef.name = "Summoning Obelisk";
-			objectDef.itemActions[1] = "Infuse Pouches";
-			// objectDef.itemActions[2] = "Infuse Scrolls";
-		}
 		if (objectDef.modifiedModelColors == null) { // :)
 			objectDef.modifiedModelColors = new int[1];
 			objectDef.originalModelColors = new int[1];
@@ -234,6 +228,7 @@ public final class ObjectDef {
 		}
 		if (objectDef.anInt781 == -1)
 			objectDef.anInt781 = 0;
+
 		return objectDef;
 	}
 

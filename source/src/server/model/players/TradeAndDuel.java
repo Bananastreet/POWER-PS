@@ -587,9 +587,6 @@ public class TradeAndDuel {
 		PlayerSave.saveGame(o);
 		if (o.tradeWith != c.playerId)
 			return;
-		if (o == null) {
-			return;
-		}
 		try {
 			for (GameItem item : o.getTradeAndDuel().offeredItems) {
 				if (item.id > 0) {
@@ -626,9 +623,6 @@ public class TradeAndDuel {
 				return;
 			if (o.playerIsBusy()) {
 				c.sendMessage("Other player is busy at the moment.");
-				return;
-			}
-			if (o == null) {
 				return;
 			}
 			if (!Config.DUEL_ENABLED) {

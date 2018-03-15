@@ -34,9 +34,9 @@ public class AudioPlaylist extends Application {
   private ChangeListener<Duration> progressChangeListener;
   private MapChangeListener<String, Object> metadataChangeListener;
 
-  public static void main(String[] args) throws Exception { launch(args); }
+  public static void main(String[] args) { launch(args); }
 
-  public void start(final Stage stage) throws Exception {
+  public void start(final Stage stage) {
     stage.setTitle("Simple Audio Player");
 
     // determine the source directory for the playlist (either the first argument to the program or a default).
@@ -52,16 +52,14 @@ public class AudioPlaylist extends Application {
 
     // create some media players.
     final List<MediaPlayer> players = new ArrayList<>();
-    for (String file : dir.list(new FilenameFilter() {
-      @Override public boolean accept(File dir, String name) {
-        for (String ext: SUPPORTED_FILE_EXTENSIONS) {
-          if (name.endsWith(ext)) {
-            return true;
-          }
+    for (String file : dir.list((dir1, name) -> {
+      for (String ext: SUPPORTED_FILE_EXTENSIONS) {
+        if (name.endsWith(ext)) {
+          return true;
         }
-
-        return false;
       }
+
+      return false;
     })) players.add(createPlayer("file:///" + (dir + "\\" + file).replace("\\", "/").replaceAll(" ", "%20")));
     if (players.isEmpty()) {
       System.out.println("No audio found in " + dir);
@@ -78,50 +76,40 @@ public class AudioPlaylist extends Application {
     for (int i = 0; i < players.size(); i++) {
       final MediaPlayer player     = players.get(i);
       final MediaPlayer nextPlayer = players.get((i + 1) % players.size());
-      player.setOnEndOfMedia(new Runnable() {
-        @Override public void run() {
-          player.currentTimeProperty().removeListener(progressChangeListener);
-          player.getMedia().getMetadata().removeListener(metadataChangeListener);
-          player.stop();
-          mediaView.setMediaPlayer(nextPlayer);
-          nextPlayer.play();
-        }
+      player.setOnEndOfMedia(() -> {
+        player.currentTimeProperty().removeListener(progressChangeListener);
+        player.getMedia().getMetadata().removeListener(metadataChangeListener);
+        player.stop();
+        mediaView.setMediaPlayer(nextPlayer);
+        nextPlayer.play();
       });
     }
     
     // allow the user to skip a track.
-    skip.setOnAction(new EventHandler<ActionEvent>() {
-      @Override public void handle(ActionEvent actionEvent) {
-        final MediaPlayer curPlayer = mediaView.getMediaPlayer();
-        curPlayer.currentTimeProperty().removeListener(progressChangeListener);
-        curPlayer.getMedia().getMetadata().removeListener(metadataChangeListener);
-        curPlayer.stop();
+    skip.setOnAction(actionEvent -> {
+      final MediaPlayer curPlayer = mediaView.getMediaPlayer();
+      curPlayer.currentTimeProperty().removeListener(progressChangeListener);
+      curPlayer.getMedia().getMetadata().removeListener(metadataChangeListener);
+      curPlayer.stop();
 
-        MediaPlayer nextPlayer = players.get((players.indexOf(curPlayer) + 1) % players.size());
-        mediaView.setMediaPlayer(nextPlayer);
-        nextPlayer.play();
-      }
+      MediaPlayer nextPlayer = players.get((players.indexOf(curPlayer) + 1) % players.size());
+      mediaView.setMediaPlayer(nextPlayer);
+      nextPlayer.play();
     });
 
     // allow the user to play or pause a track.
-    play.setOnAction(new EventHandler<ActionEvent>() {
-      @Override public void handle(ActionEvent actionEvent) {
-        if ("Pause".equals(play.getText())) {
-          mediaView.getMediaPlayer().pause();
-          play.setText("Play");
-        } else {
-          mediaView.getMediaPlayer().play();
-          play.setText("Pause");
-        }
+    play.setOnAction(actionEvent -> {
+      if ("Pause".equals(play.getText())) {
+        mediaView.getMediaPlayer().pause();
+        play.setText("Play");
+      } else {
+        mediaView.getMediaPlayer().play();
+        play.setText("Pause");
       }
     });
 
     // display the name of the currently playing track.
-    mediaView.mediaPlayerProperty().addListener(new ChangeListener<MediaPlayer>() {
-      @Override public void changed(ObservableValue<? extends MediaPlayer> observableValue, MediaPlayer oldPlayer, MediaPlayer newPlayer) {
-        setCurrentlyPlaying(newPlayer);
-      }
-    });
+    mediaView.mediaPlayerProperty().addListener((observableValue, oldPlayer, newPlayer) -> setCurrentlyPlaying(newPlayer));
     
     // start playing the first track.
     mediaView.setMediaPlayer(players.get(0));
@@ -215,11 +203,7 @@ public class AudioPlaylist extends Application {
     newPlayer.seek(Duration.ZERO);
 
     progress.setProgress(0);
-    progressChangeListener = new ChangeListener<Duration>() {
-      @Override public void changed(ObservableValue<? extends Duration> observableValue, Duration oldValue, Duration newValue) {
-        progress.setProgress(1.0 * newPlayer.getCurrentTime().toMillis() / newPlayer.getTotalDuration().toMillis());
-      }
-    };
+    progressChangeListener = (observableValue, oldValue, newValue) -> progress.setProgress(1.0 * newPlayer.getCurrentTime().toMillis() / newPlayer.getTotalDuration().toMillis());
     newPlayer.currentTimeProperty().addListener(progressChangeListener);
 
     String source = newPlayer.getMedia().getSource();
@@ -232,12 +216,7 @@ public class AudioPlaylist extends Application {
 
   private void setMetaDataDisplay(ObservableMap<String, Object> metadata) {
     metadataTable.getItems().setAll(convertMetadataToTableData(metadata));
-    metadataChangeListener = new MapChangeListener<String, Object>() {
-      @Override
-      public void onChanged(Change<? extends String, ?> change) {
-        metadataTable.getItems().setAll(convertMetadataToTableData(metadata));
-      }
-    };
+    metadataChangeListener = change -> metadataTable.getItems().setAll(convertMetadataToTableData(metadata));
     metadata.addListener(metadataChangeListener);
   }
 
@@ -260,11 +239,7 @@ public class AudioPlaylist extends Application {
   private MediaPlayer createPlayer(String mediaSource) {
     final Media media = new Media(mediaSource);
     final MediaPlayer player = new MediaPlayer(media);
-    player.setOnError(new Runnable() {
-      @Override public void run() {
-        System.out.println("Media error occurred: " + player.getError());
-      }
-    });
+    player.setOnError(() -> System.out.println("Media error occurred: " + player.getError()));
     return player;
   }
 }

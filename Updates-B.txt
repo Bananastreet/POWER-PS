@@ -18,3 +18,8 @@ Fixed interface scrolling for the client.
 Started working on adding resizable and fullscreen, properly.
 Added client zooming.
 
+3/1/2018:
+Changed the structure of the client to make it more in "compliance."
+Added some getters and some other methods to make the code "cleaner" and to change it from accessing it non-statically.
+Formatted the code in some classes for better readability.
+Basically nothing too productive today.

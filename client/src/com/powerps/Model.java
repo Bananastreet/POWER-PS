@@ -1,10 +1,5 @@
 package com.powerps;
 
-import java.io.*;
-import java.net.*;
-import sign.signlink;
-import java.util.zip.*;
-
 public class Model extends Animable {
 
 	public static void nullLoader() {
@@ -1833,6 +1828,7 @@ public class Model extends Animable {
 			anIntArray1633[k] = l;
 		}
 	}
+
 	public void method1337(int j) {
 		for (int k = 0; k < anInt1630; k++) {
 			anIntArray1640[k] = j;
@@ -2423,14 +2419,18 @@ public class Model extends Animable {
 			int k4 = anIntArray1634[i];
 			if (j2 >= 50) {
 				int k5 = (50 - l1) * modelIntArray4[j2 - l1];
-				anIntArray1678[l] = j + (k2 + ((anIntArray1668[k1] - k2) * k5 >> 16) << WorldController.viewDistance) / 50;
-				anIntArray1679[l] = k + (k3 + ((anIntArray1669[k1] - k3) * k5 >> 16) << WorldController.viewDistance) / 50;
+				anIntArray1678[l] = j
+						+ (k2 + ((anIntArray1668[k1] - k2) * k5 >> 16) << WorldController.viewDistance) / 50;
+				anIntArray1679[l] = k
+						+ (k3 + ((anIntArray1669[k1] - k3) * k5 >> 16) << WorldController.viewDistance) / 50;
 				anIntArray1680[l++] = k4 + ((anIntArray1636[i] - k4) * k5 >> 16);
 			}
 			if (i2 >= 50) {
 				int l5 = (50 - l1) * modelIntArray4[i2 - l1];
-				anIntArray1678[l] = j + (k2 + ((anIntArray1668[j1] - k2) * l5 >> 16) << WorldController.viewDistance) / 50;
-				anIntArray1679[l] = k + (k3 + ((anIntArray1669[j1] - k3) * l5 >> 16) << WorldController.viewDistance) / 50;
+				anIntArray1678[l] = j
+						+ (k2 + ((anIntArray1668[j1] - k2) * l5 >> 16) << WorldController.viewDistance) / 50;
+				anIntArray1679[l] = k
+						+ (k3 + ((anIntArray1669[j1] - k3) * l5 >> 16) << WorldController.viewDistance) / 50;
 				anIntArray1680[l++] = k4 + ((anIntArray1635[i] - k4) * l5 >> 16);
 			}
 		}
@@ -2444,14 +2444,18 @@ public class Model extends Animable {
 			int l4 = anIntArray1635[i];
 			if (l1 >= 50) {
 				int i6 = (50 - i2) * modelIntArray4[l1 - i2];
-				anIntArray1678[l] = j + (l2 + ((anIntArray1668[i1] - l2) * i6 >> 16) << WorldController.viewDistance) / 50;
-				anIntArray1679[l] = k + (l3 + ((anIntArray1669[i1] - l3) * i6 >> 16) << WorldController.viewDistance) / 50;
+				anIntArray1678[l] = j
+						+ (l2 + ((anIntArray1668[i1] - l2) * i6 >> 16) << WorldController.viewDistance) / 50;
+				anIntArray1679[l] = k
+						+ (l3 + ((anIntArray1669[i1] - l3) * i6 >> 16) << WorldController.viewDistance) / 50;
 				anIntArray1680[l++] = l4 + ((anIntArray1634[i] - l4) * i6 >> 16);
 			}
 			if (j2 >= 50) {
 				int j6 = (50 - i2) * modelIntArray4[j2 - i2];
-				anIntArray1678[l] = j + (l2 + ((anIntArray1668[k1] - l2) * j6 >> 16) << WorldController.viewDistance) / 50;
-				anIntArray1679[l] = k + (l3 + ((anIntArray1669[k1] - l3) * j6 >> 16) << WorldController.viewDistance) / 50;
+				anIntArray1678[l] = j
+						+ (l2 + ((anIntArray1668[k1] - l2) * j6 >> 16) << WorldController.viewDistance) / 50;
+				anIntArray1679[l] = k
+						+ (l3 + ((anIntArray1669[k1] - l3) * j6 >> 16) << WorldController.viewDistance) / 50;
 				anIntArray1680[l++] = l4 + ((anIntArray1636[i] - l4) * j6 >> 16);
 			}
 		}
@@ -2465,14 +2469,18 @@ public class Model extends Animable {
 			int i5 = anIntArray1636[i];
 			if (i2 >= 50) {
 				int k6 = (50 - j2) * modelIntArray4[i2 - j2];
-				anIntArray1678[l] = j + (i3 + ((anIntArray1668[j1] - i3) * k6 >> 16) << WorldController.viewDistance) / 50;
-				anIntArray1679[l] = k + (i4 + ((anIntArray1669[j1] - i4) * k6 >> 16) << WorldController.viewDistance) / 50;
+				anIntArray1678[l] = j
+						+ (i3 + ((anIntArray1668[j1] - i3) * k6 >> 16) << WorldController.viewDistance) / 50;
+				anIntArray1679[l] = k
+						+ (i4 + ((anIntArray1669[j1] - i4) * k6 >> 16) << WorldController.viewDistance) / 50;
 				anIntArray1680[l++] = i5 + ((anIntArray1635[i] - i5) * k6 >> 16);
 			}
 			if (l1 >= 50) {
 				int l6 = (50 - j2) * modelIntArray4[l1 - j2];
-				anIntArray1678[l] = j + (i3 + ((anIntArray1668[i1] - i3) * l6 >> 16) << WorldController.viewDistance) / 50;
-				anIntArray1679[l] = k + (i4 + ((anIntArray1669[i1] - i4) * l6 >> 16) << WorldController.viewDistance) / 50;
+				anIntArray1678[l] = j
+						+ (i3 + ((anIntArray1668[i1] - i3) * l6 >> 16) << WorldController.viewDistance) / 50;
+				anIntArray1679[l] = k
+						+ (i4 + ((anIntArray1669[i1] - i4) * l6 >> 16) << WorldController.viewDistance) / 50;
 				anIntArray1680[l++] = i5 + ((anIntArray1634[i] - i5) * l6 >> 16);
 			}
 		}

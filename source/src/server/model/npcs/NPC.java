@@ -1,13 +1,10 @@
 package server.model.npcs;
 
 import server.Server;
-import server.util.Misc;
-import server.model.players.NPCStats;
-import server.util.Stream;
-import server.world.*;
-import server.model.players.Client;
 import server.model.entity.Entity;
-import server.model.npcs.*;
+import server.model.players.Client;
+import server.util.Misc;
+import server.util.Stream;
 
 public class NPC extends Entity {
 	public boolean inDungBossRoom() {

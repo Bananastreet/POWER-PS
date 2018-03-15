@@ -1,9 +1,5 @@
 package server.model.players;
 
-import server.*;
-import server.util.*;
-import server.model.players.*;
-
 public class QuickCurses {
 
 	/**

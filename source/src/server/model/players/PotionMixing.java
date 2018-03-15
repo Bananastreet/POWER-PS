@@ -1,5 +1,7 @@
 package server.model.players;
 
+import server.model.items.ItemAssistant;
+
 /**
  * @author Sanity
  */
@@ -13,8 +15,8 @@ public class PotionMixing {
 	}
 	
 	public void mixPotion2(int id, int id2) {
-		String id11 = c.getItems().getItemName(id);
-		String id22 = c.getItems().getItemName(id2);
+		String id11 = ItemAssistant.getItemName(id);
+		String id22 = ItemAssistant.getItemName(id2);
 		if (id11.substring(0,id11.indexOf("(")).equalsIgnoreCase(id22.substring(0,id22.indexOf("(")))) {
 			try {
 				int amount1 = Integer.parseInt(id11.substring(id11.indexOf("(") + 1,id11.indexOf("(") + 2));

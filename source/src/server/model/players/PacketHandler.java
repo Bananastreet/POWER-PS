@@ -1,9 +1,9 @@
 package server.model.players;
 
+import server.Config;
 import server.model.players.packets.AttackPlayer;
 import server.model.players.packets.Bank10;
 import server.model.players.packets.Bank5;
-import server.Config;
 import server.model.players.packets.BankAll;
 import server.model.players.packets.BankX1;
 import server.model.players.packets.BankX2;
@@ -19,7 +19,6 @@ import server.model.players.packets.ClickingButtons;
 import server.model.players.packets.ClickingInGame;
 import server.model.players.packets.ClickingStuff;
 import server.model.players.packets.Commands;
-import server.model.players.packets.CommandsBackup;
 import server.model.players.packets.Dialogue;
 import server.model.players.packets.DropItem;
 import server.model.players.packets.FollowPlayer;

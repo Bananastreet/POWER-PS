@@ -1,27 +1,24 @@
 package server.model.players.packets;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+
+import com.motivoters.motivote.service.MotivoteRS;
+
 import server.Config;
 import server.Connection;
 import server.Server;
+import server.model.players.AchievementManager;
+import server.model.players.Achievements;
 import server.model.players.Client;
 import server.model.players.PacketType;
-import server.model.players.PlayerSave;
-import server.model.players.content.RequestHelp;
-import server.model.players.content.TriviaBot;
 import server.model.players.Player;
 import server.model.players.PlayerHandler;
-import server.model.players.BankPin;
-import server.model.items.ItemAssistant;
-import java.util.ArrayList;
-import com.motivoters.motivote.service.MotivoteRS;
-
-import server.model.players.Achievements;
-import server.model.players.AchievementManager;
-import server.model.players.AchievementExtra;
+import server.model.players.PlayerSave;
+import server.model.players.content.TriviaBot;
 import server.util.Misc;
-
-import java.io.*;
-
 import server.world.PublicEvent;
 
 public class CommandsBackup implements PacketType {
